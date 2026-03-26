@@ -28,10 +28,10 @@ export async function GET(
       );
     }
 
-    const evidence = await prisma.evidence.findUnique({
+    const evidence = (await prisma.evidence.findUnique({
       where: { id },
-      select: { imageData: true, imageType: true },
-    });
+      select: { imageData: true, imageType: true } as any,
+    })) as { imageData: Buffer | null; imageType: string | null } | null;
 
     if (!evidence || !evidence.imageData) {
       return NextResponse.json(
@@ -40,7 +40,7 @@ export async function GET(
       );
     }
 
-    const response = new NextResponse(evidence.imageData);
+    const response = new NextResponse(new Uint8Array(evidence.imageData));
     response.headers.set("Content-Type", evidence.imageType || "image/jpeg");
     response.headers.set("Cache-Control", "public, max-age=31536000, immutable");
     return response;

@@ -28,10 +28,10 @@ export async function GET(
       );
     }
 
-    const roast = await prisma.roast.findUnique({
+    const roast = (await prisma.roast.findUnique({
       where: { id },
-      select: { imageData: true, imageType: true },
-    });
+      select: { imageData: true, imageType: true } as any,
+    })) as { imageData: Buffer | null; imageType: string | null } | null;
 
     if (!roast || !roast.imageData) {
       return NextResponse.json(
@@ -40,7 +40,7 @@ export async function GET(
       );
     }
 
-    const response = new NextResponse(roast.imageData);
+    const response = new NextResponse(new Uint8Array(roast.imageData));
     response.headers.set("Content-Type", roast.imageType || "image/jpeg");
     response.headers.set("Cache-Control", "public, max-age=31536000, immutable");
     return response;
