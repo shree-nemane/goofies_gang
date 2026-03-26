@@ -2,9 +2,7 @@
 const nextConfig = {
   reactCompiler: true,
   experimental: {
-    serverActions: {
-      bodySizeLimit: '10mb',
-    },
+    turbo: false,  // Disable Turbopack
   },
   // Security headers
   async headers() {
