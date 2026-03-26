@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EvidenceHeight {
+  h_64
+  h_96
+  h_80
+}
+
+enum QuoteColor {
+  white
+  red
+  blue
+  yellow
+  green
+  purple
+  pink
+  slate
+}
+
+model Quote {
+  id        String      @id @default(cuid())
+  text      String      @db.Text
+  author    String      @db.VarChar(100)
+  context   String      @db.Text
+  color     QuoteColor  @default(white)
+  createdBy String      @db.VarChar(100)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([createdBy])
+  @@index([createdAt])
+}
+
+model Evidence {
+  id        String          @id @default(cuid())
+  imageUrl  String?         @db.Text
+  caption   String          @db.VarChar(200)
+  height    EvidenceHeight  @default(h_64)
+  rotation  Int             @default(0)
+  createdBy String          @db.VarChar(100)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([createdBy])
+  @@index([createdAt])
+}
+
+model Roast {
+  id        String   @id @default(cuid())
+  target    String   @db.VarChar(100)
+  author    String   @db.VarChar(100)
+  message   String   @db.Text
+  imageUrl  String?  @db.Text
+  burns     Int      @default(0)
+  createdBy String   @db.VarChar(100)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userBurns UserBurn[]
+
+  @@index([createdBy])
+  @@index([target])
+  @@index([createdAt])
+}
+
+model UserBurn {
+  id        String   @id @default(cuid())
+  userId    String   @db.VarChar(100)
+  roastId   String
+  roast     Roast    @relation(fields: [roastId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, roastId])
+  @@index([userId])
+  @@index([roastId])
+}

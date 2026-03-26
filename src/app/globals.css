@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
+@theme {
+  --color-surface: #fdf6e3;
+  --color-surface-container: #efe8d2;
+  --color-surface-container-low: #f8f0dc;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-dim: #ebdcb9;
+
+  --color-primary: #b31446;
+  --color-primary-container: #ff728d;
+  --color-secondary-container: #ffe082;
+  --color-tertiary-container: #a8e6cf;
+  --color-tertiary: #00694c;
+  
+  --color-on-surface: #322f22;
+  --color-on-primary: #ffffff;
+  --color-outline-variant: rgba(50, 47, 34, 0.15);
+
+  --font-display: var(--font-jakarta), sans-serif;
+  --font-body: var(--font-vietnam), sans-serif;
+  --font-sans: var(--font-vietnam), sans-serif;
+  --font-handwritten: var(--font-caveat), cursive;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-surface);
+  --foreground: var(--color-on-surface);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  /* Replaced expensive SVG fractal noise with a pre-rendered static noise texture to completely eliminate scroll lag */
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+}
+
+/* Base styles to prevent any unstyled scrolling weirdness */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Custom shadow to mimic thick cardstock on a desk */
+.shadow-ambient {
+  box-shadow: 0 8px 24px rgba(50, 47, 34, 0.08);
+}
+
+/* Button marker gradient */
+.bg-marker-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+}
+
+/* Marker underline for inputs */
+.marker-underline {
+  border-bottom: 2px solid var(--color-outline-variant);
+  transition: all 0.3s ease;
+}
+
+.marker-underline:focus {
+  outline: none;
+  border-bottom-color: transparent;
+  background-image: linear-gradient(var(--color-primary), var(--color-primary));
+  background-position: bottom left;
+  background-size: 100% 3px;
+  background-repeat: no-repeat;
 }
