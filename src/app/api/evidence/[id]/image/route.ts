@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rateLimit";
 
-export const revalidate = 3600;
-
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
