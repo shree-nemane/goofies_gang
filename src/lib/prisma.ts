@@ -6,4 +6,5 @@ const globalForPrisma = globalThis as unknown as {
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient();
 
+// Cache in ALL environments - critical for Vercel serverless
 globalForPrisma.prisma = prisma;

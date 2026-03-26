@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { queryWithRetry } from "@/lib/db";
 import { RoastFeed } from "@/components/RoastFeed";
 import { RoastForm } from "@/components/RoastForm";
 import { RoastLeaderboard } from "@/components/RoastLeaderboard";
@@ -18,10 +19,10 @@ export default async function RoastPage(props: PageProps) {
   const offset = getPaginationOffset(page, pageSize);
 
   // Get total count
-  const total = await prisma.roast.count();
+  const total = await queryWithRetry(() => prisma.roast.count());
 
   // Get paginated roasts
-  const roasts = await prisma.roast.findMany({
+  const roasts = await queryWithRetry(() => prisma.roast.findMany({
     orderBy: { createdAt: "asc" }, // Newest at the bottom like a chat feed
     take: pageSize,
     skip: offset,
@@ -34,7 +35,7 @@ export default async function RoastPage(props: PageProps) {
       createdAt: true,
       imageUrl: true,
     },
-  });
+  }));
 
   const pagination = calculatePaginationMeta(page, pageSize, total);
 

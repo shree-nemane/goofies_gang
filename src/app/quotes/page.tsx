@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { queryWithRetry } from "@/lib/db";
 import { QuoteGrid } from "@/components/QuoteGrid";
 import { AddQuoteForm } from "@/components/AddQuoteForm";
 import { getPaginationParams, getPaginationOffset, calculatePaginationMeta } from "@/lib/pagination";
@@ -16,13 +17,13 @@ export default async function QuotesPage(props: PageProps) {
   const { page } = getPaginationParams(searchParams, pageSize);
   const offset = getPaginationOffset(page, pageSize);
 
-  const total = await prisma.quote.count();
+  const total = await queryWithRetry(() => prisma.quote.count());
 
-  const quotesInfo = await prisma.quote.findMany({
+  const quotesInfo = await queryWithRetry(() => prisma.quote.findMany({
     orderBy: { createdAt: "desc" },
     take: pageSize,
     skip: offset,
-  });
+  }));
   
   const pagination = calculatePaginationMeta(page, pageSize, total);
 

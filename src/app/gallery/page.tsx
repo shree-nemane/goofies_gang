@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { queryWithRetry } from "@/lib/db";
 import { EvidenceGallery } from "@/components/EvidenceGallery";
 import { AddEvidenceForm } from "@/components/AddEvidenceForm";
 import { getPaginationParams, getPaginationOffset, calculatePaginationMeta } from "@/lib/pagination";
@@ -17,10 +18,10 @@ export default async function GalleryPage(props: PageProps) {
   const offset = getPaginationOffset(page, pageSize);
 
   // Get total count
-  const total = await prisma.evidence.count();
+  const total = await queryWithRetry(() => prisma.evidence.count());
 
   // Get paginated items
-  const itemsInfo = await prisma.evidence.findMany({
+  const itemsInfo = await queryWithRetry(() => prisma.evidence.findMany({
     orderBy: { createdAt: "desc" },
     take: pageSize,
     skip: offset,
@@ -31,7 +32,7 @@ export default async function GalleryPage(props: PageProps) {
       rotation: true,
       createdAt: true,
     },
-  });
+  }));
 
   const pagination = calculatePaginationMeta(page, pageSize, total);
 
