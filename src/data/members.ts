@@ -35,7 +35,7 @@ export const members: Member[] = [
     hiddenNotes: ["Could definitely run for mayor of Nashik.", "Certified mood lifter."],
     longDescription: "The brightest character of the tribe! No matter how bad your day must have gone she'll be right there to cheer you up. She's been living up to her name undoubtedly; she's the funniest and always carries her positive vibes along.",
     signatureLines: ["Nashik meri jeb mey hai!", "Why is everyone so serious?"],
-    coreMemories: [{ title: "The Cheer Session", description: "Lifting the group's spirits after a disastrously lazy day." }],
+    coreMemories: [{ title: "The Cheer Session", description: "Lifting the groups spirits after a disastrously lazy day." }],
     role: "The Mood Lifter",
     chaosIndex: { "Volume": 8, "Positivity": 10, "Humor": 10 },
     gallery: [],
