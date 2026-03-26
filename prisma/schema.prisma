@@ -8,6 +8,8 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  // Add this for better serverless support
+  relationMode = "prisma"
 }
 
 enum EvidenceHeight {

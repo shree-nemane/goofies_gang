@@ -6,15 +6,22 @@ export async function queryWithRetry<T>(
 
   for (let i = 0; i < maxRetries; i++) {
     try {
-      return await fn();
+      console.log(`[DB Query] Attempt ${i + 1}/${maxRetries}`);
+      const result = await fn();
+      console.log('[DB Query] Success');
+      return result;
     } catch (error) {
       lastError = error as Error;
+      console.error(`[DB Query] Attempt ${i + 1} failed:`, lastError.message);
+      
       if (i < maxRetries - 1) {
-        // Wait before retrying (exponential backoff)
-        await new Promise(resolve => setTimeout(resolve, 100 * Math.pow(2, i)));
+        const delay = 100 * Math.pow(2, i);
+        console.log(`[DB Query] Retrying in ${delay}ms...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
   }
 
+  console.error('[DB Query] All retries exhausted');
   throw lastError;
 }
