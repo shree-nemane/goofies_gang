@@ -4,6 +4,12 @@ import { EvidenceGallery } from "@/components/EvidenceGallery";
 import { AddEvidenceForm } from "@/components/AddEvidenceForm";
 import { getPaginationParams, getPaginationOffset, calculatePaginationMeta } from "@/lib/pagination";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Evidence Locker",
+  description: "A collection of photographic evidence of our most chaotic and questionable moments. No filters, just raw memories.",
+};
 
 export const revalidate = 60; // Revalidate every minute
 

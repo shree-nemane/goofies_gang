@@ -25,10 +25,55 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "GOOFIES - The Chaos Collection",
-  description: "A digital scrapbook of friendships — chaotic, funny, and emotional.",
+  title: {
+    default: "GOOFIES - The Chaos Collection",
+    template: "%s | GOOFIES",
+  },
+  description: "A digital scrapbook of friendships — chaotic, funny, and emotional. Archiving the moments we'll probably regret in 10 years.",
+  keywords: ["friendship", "scrapbook", "inside jokes", "memories", "roasts", "evidence locker"],
+  authors: [{ name: "The GOOFIES Crew" }],
+  creator: "The GOOFIES Crew",
+  publisher: "GOOFIES Co.",
+  metadataBase: new URL("https://goofies-gang.vercel.app"), 
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://goofies-gang.vercel.app",
+    siteName: "GOOFIES",
+    title: "GOOFIES - The Chaos Collection",
+    description: "A digital scrapbook of friendships — chaotic, funny, and emotional.",
+    images: [
+      {
+        url: "/og-image.png", // Need to ensure this exists or use a generic one
+        width: 1200,
+        height: 630,
+        alt: "GOOFIES - Digital Scrapbook",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GOOFIES - The Chaos Collection",
+    description: "A digital scrapbook of friendships — chaotic, funny, and emotional.",
+    images: ["/og-image.png"],
+  },
   icons: {
-    icon: '/icon.png',
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -42,6 +87,31 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.variable} ${beVietnamPro.variable} ${caveat.variable} antialiased text-[#322f22] bg-[#fdf6e3] relative min-h-screen flex flex-col`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "GOOFIES",
+              url: "https://goofies-gang.vercel.app",
+              description: "A digital scrapbook of friendships — chaotic, funny, and emotional.",
+              publisher: {
+                "@type": "Organization",
+                name: "The GOOFIES Crew",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://goofies-gang.vercel.app/icon.png"
+                }
+              },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://goofies-gang.vercel.app/gallery?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }),
+          }}
+        />
         <Navigation />
         <ErrorBoundary>
           <main className="relative z-10 w-full overflow-x-hidden flex-1">

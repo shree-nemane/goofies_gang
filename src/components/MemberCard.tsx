@@ -27,7 +27,7 @@ export function MemberCard({ member, rotation = 0 }: MemberCardProps) {
         <div className="relative w-full aspect-square bg-[#efe8d2] mb-4 overflow-hidden rounded-sm group-hover:shadow-inner transition-shadow">
           <img 
             src={member.pfpImage || member.image}
-            alt={member.name}
+            alt={`Profile photo of ${member.name}, also known as ${member.nickname} - ${member.role}`}
             className="w-full h-full object-cover filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
           />
           {/* subtle inside joke sticky note */}

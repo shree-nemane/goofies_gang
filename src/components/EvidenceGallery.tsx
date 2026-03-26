@@ -41,7 +41,7 @@ export function EvidenceGallery({ items }: { items: Evidence[] }) {
             <div className={`absolute -top-2 md:-top-3 left-1/2 w-12 md:w-16 h-4 md:h-5 transform -translate-x-1/2 rounded-sm opacity-90 ${i % 2 === 0 ? 'bg-[#ff728d] -rotate-2' : 'bg-[#a8e6cf] rotate-1'}`} />
 
             <div className={`w-full bg-gray-200 mb-3 md:mb-4 ${img.height}`}>
-              <img src={`/api/evidence/${img.id}/image`} alt={img.caption} loading="lazy" decoding="async" className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-500" />
+              <img src={`/api/evidence/${img.id}/image`} alt={`Evidence photo: ${img.caption} - uploaded on ${new Date(img.createdAt).toLocaleDateString()}`} loading="lazy" decoding="async" className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-500" />
             </div>
             
             <p style={{ fontFamily: "var(--font-caveat)" }} className="text-lg md:text-xl text-center text-[#322f22] pb-2 break-words px-2">

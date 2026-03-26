@@ -4,6 +4,12 @@ import { QuoteGrid } from "@/components/QuoteGrid";
 import { AddQuoteForm } from "@/components/AddQuoteForm";
 import { getPaginationParams, getPaginationOffset, calculatePaginationMeta } from "@/lib/pagination";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "The Quotebook",
+  description: "A chronological record of every weird, funny, and regrettable thing we've ever said out loud. Don't let your guard down.",
+};
 
 export const revalidate = 60;
 

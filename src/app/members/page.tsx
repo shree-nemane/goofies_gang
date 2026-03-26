@@ -1,5 +1,11 @@
 import { members } from "../../data/members";
 import { MemberCard } from "../../components/MemberCard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "The Crew",
+  description: "Meet the GOOFIES: a digital archive of the people who make common sense look like a superpower. Profiles of the squad.",
+};
 
 export default function MembersPage() {
   return (

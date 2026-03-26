@@ -5,6 +5,12 @@ import { RoastForm } from "@/components/RoastForm";
 import { RoastLeaderboard } from "@/components/RoastLeaderboard";
 import { getPaginationParams, getPaginationOffset, calculatePaginationMeta } from "@/lib/pagination";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "The Burn Unit",
+  description: "A chronological feed of roasts and burning insults between friends. Vote for your favorite burns and see who tops the leaderboard.",
+};
 
 export const revalidate = 60; // Revalidate every minute
 
