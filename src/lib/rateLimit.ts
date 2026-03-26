@@ -20,7 +20,13 @@ export function checkRateLimit(
   const now = Date.now();
   const record = rateLimitStore.get(key);
 
-  if (!record || now > record.resetTime) {
+  // Lazy cleanup for this specific key
+  if (record && now > record.resetTime) {
+    rateLimitStore.delete(key);
+    return { allowed: true, remaining: config.maxRequests - 1 };
+  }
+
+  if (!record) {
     // Create new record
     rateLimitStore.set(key, {
       count: 1,
@@ -37,12 +43,4 @@ export function checkRateLimit(
   return { allowed: true, remaining: config.maxRequests - record.count };
 }
 
-// Clean up old records periodically
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, record] of rateLimitStore.entries()) {
-    if (now > record.resetTime) {
-      rateLimitStore.delete(key);
-    }
-  }
-}, 60000); // Cleanup every minute
+// Clean up logic moved to checkRateLimit for serverless compatibility
