@@ -30,18 +30,19 @@ export async function GET(
 
     const roast = await prisma.roast.findUnique({
       where: { id },
-      select: { imageUrl: true },
+      select: { imageData: true, imageType: true },
     });
 
-    if (!roast || !roast.imageUrl) {
+    if (!roast || !roast.imageData) {
       return NextResponse.json(
         { success: false, error: "Image not found" },
         { status: 404 }
       );
     }
 
-    const response = NextResponse.redirect(roast.imageUrl);
-    response.headers.set("Cache-Control", "public, max-age=3600, immutable");
+    const response = new NextResponse(roast.imageData);
+    response.headers.set("Content-Type", roast.imageType || "image/jpeg");
+    response.headers.set("Cache-Control", "public, max-age=31536000, immutable");
     return response;
   } catch (error) {
     console.error("Error fetching roast image:", error);

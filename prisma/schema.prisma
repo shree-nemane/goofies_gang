@@ -44,6 +44,8 @@ model Quote {
 model Evidence {
   id        String          @id @default(cuid())
   imageUrl  String?         @db.Text
+  imageData Bytes?          @db.ByteA
+  imageType String?         @db.VarChar(50)
   caption   String          @db.VarChar(200)
   height    EvidenceHeight  @default(h_64)
   rotation  Int             @default(0)
@@ -61,6 +63,8 @@ model Roast {
   author    String   @db.VarChar(100)
   message   String   @db.Text
   imageUrl  String?  @db.Text
+  imageData Bytes?   @db.ByteA
+  imageType String?  @db.VarChar(50)
   burns     Int      @default(0)
   createdBy String   @db.VarChar(100)
   createdAt DateTime @default(now())

@@ -2,8 +2,6 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { put } from "@vercel/blob";
-import { v4 as uuidv4 } from "uuid";
 import {
   quoteSchema,
   evidenceSchema,
@@ -20,8 +18,6 @@ export type ActionResponse = {
   error?: string;
   data?: unknown;
 };
-
-const BLOB_READ_WRITE_TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
 
 // Helper to get client IP for rate limiting
 function getClientIp(request?: Request): string {
@@ -145,32 +141,23 @@ export async function addEvidence(formData: FormData): Promise<ActionResponse> {
     // Validate with zod
     const validated = evidenceSchema.parse({ image: imageFile, caption, secret });
 
-    if (!BLOB_READ_WRITE_TOKEN) {
-      throw new Error(
-        "Vercel Blob upload token not found. Set BLOB_READ_WRITE_TOKEN in env."
-      );
-    }
-
-    // Upload image to blob (before database operation)
-    const buffer = Buffer.from(await imageFile.arrayBuffer());
-    const fileName = `${uuidv4()}-${imageFile.name}`;
-    const blob = await put(`evidence/${fileName}`, buffer, {
-      access: "public",
-      token: BLOB_READ_WRITE_TOKEN,
-    });
+    // Convert image to Buffer for DB storage
+    const imageBuffer = Buffer.from(await imageFile.arrayBuffer());
+    const imageType = imageFile.type || "image/jpeg";
 
     // Randomize display properties
     const rotations = [-2, 2, -3, 3, -1, 1, 0];
     const heights = ["h_64", "h_96", "h_80"] as const;
 
-    // Create evidence in database (transaction-safe)
+    // Create evidence in database
     const evidence = await prisma.evidence.create({
       data: {
-        imageUrl: blob.url,
+        imageData: imageBuffer,
+        imageType: imageType,
         caption: validated.caption,
         rotation: rotations[Math.floor(Math.random() * rotations.length)],
         height: heights[Math.floor(Math.random() * heights.length)],
-        createdBy: "system", // Default, should be from auth in production
+        createdBy: "system",
       },
     });
 
@@ -262,23 +249,13 @@ export async function addRoast(formData: FormData): Promise<ActionResponse> {
       secret,
     });
 
-    let imageUrl: string | null = null;
+    let imageData: Buffer | null = null;
+    let imageType: string | null = null;
 
-    // Upload image if provided
+    // Process image if provided
     if (imageFile && imageFile.size > 0) {
-      if (!BLOB_READ_WRITE_TOKEN) {
-        throw new Error(
-          "Vercel Blob upload token not found. Set BLOB_READ_WRITE_TOKEN in env."
-        );
-      }
-
-      const buffer = Buffer.from(await imageFile.arrayBuffer());
-      const fileName = `${uuidv4()}-${imageFile.name}`;
-      const blob = await put(`roast/${fileName}`, buffer, {
-        access: "public",
-        token: BLOB_READ_WRITE_TOKEN,
-      });
-      imageUrl = blob.url;
+      imageData = Buffer.from(await imageFile.arrayBuffer());
+      imageType = imageFile.type || "image/jpeg";
     }
 
     // Create roast in database
@@ -287,7 +264,8 @@ export async function addRoast(formData: FormData): Promise<ActionResponse> {
         target: validated.target,
         author: validated.author,
         message: validated.message,
-        imageUrl,
+        imageData,
+        imageType,
         createdBy: validated.author,
       },
     });
