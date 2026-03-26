@@ -23,12 +23,6 @@ export type ActionResponse = {
 
 const BLOB_READ_WRITE_TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
 
-if (!BLOB_READ_WRITE_TOKEN) {
-  console.warn(
-    "BLOB_READ_WRITE_TOKEN is not configured. addEvidence/addRoast blob upload calls will fail."
-  );
-}
-
 // Helper to get client IP for rate limiting
 function getClientIp(request?: Request): string {
   if (!request) return "unknown";
