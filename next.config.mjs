@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
-  experimental: {
-    turbo: false,  // Disable Turbopack
-  },
   // Security headers
   async headers() {
     return [
@@ -33,6 +30,11 @@ const nextConfig = {
         ],
       },
     ];
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
   },
 };
 

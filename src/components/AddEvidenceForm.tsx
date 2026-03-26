@@ -16,6 +16,14 @@ export function AddEvidenceForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
     
+    // Client-side validation: 5MB limit
+    const imageFile = formData.get("image") as File;
+    if (imageFile && imageFile.size > 5 * 1024 * 1024) {
+      setErrorMsg("File must be less than 5MB (Group rules, sorry!)");
+      setIsPending(false);
+      return;
+    }
+    
     try {
       const res = await addEvidence(formData);
       

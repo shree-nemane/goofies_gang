@@ -26,7 +26,7 @@ export function RoastFeed({ roasts }: { roasts: Roast[] }) {
   }
 
   return (
-    <div className="flex flex-col gap-12 w-full">
+    <div className="flex flex-col gap-8 md:gap-12 w-full">
       {roasts.map((roast, index) => {
         const isEven = index % 2 === 0;
         
@@ -41,33 +41,34 @@ export function RoastFeed({ roasts }: { roasts: Roast[] }) {
         
         const palette = palettes[index % palettes.length];
         
+        // On mobile, we might want to reduce the offset for the alternating bubbles
         const alignClass = isEven ? "self-start" : "self-end flex-row-reverse";
-        const tailClass = isEven ? "rounded-r-2xl rounded-bl-2xl" : "rounded-l-2xl rounded-br-2xl";
+        const tailClass = isEven ? "rounded-r-2xl rounded-bl-2xl md:rounded-bl-3xl" : "rounded-l-2xl rounded-br-2xl md:rounded-br-3xl";
 
         return (
           <motion.div 
             key={roast.id}
-            initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+            initial={{ opacity: 0, x: isEven ? -30 : 30 }}
             animate={{ opacity: 1, x: 0 }}
-            className={`flex gap-4 group relative ${alignClass} w-full max-w-xl`}
+            className={`flex gap-3 md:gap-4 group relative ${alignClass} w-full max-w-[95%] sm:max-w-xl`}
           >
-            <div className={`w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center font-black ${palette.avatar} ${palette.text} uppercase`}>
+            <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex-shrink-0 flex items-center justify-center font-black text-xs md:text-sm ${palette.avatar} ${palette.text} uppercase shadow-sm`}>
               {roast.author.charAt(0)}
             </div>
             
-            <div className={`${palette.bg} p-4 sm:p-6 ${palette.text} ${tailClass} shadow-[4px_4px_0px_rgba(0,0,0,0.1)] w-full relative`}>
+            <div className={`${palette.bg} p-4 md:p-6 ${palette.text} ${tailClass} shadow-[4px_4px_0px_rgba(0,0,0,0.1)] w-full relative`}>
               <DeleteButton id={roast.id} type="roast" className={`absolute -top-3 ${isEven ? '-right-3' : '-left-3'} opacity-0 group-hover:opacity-100 transition-opacity`} />
               
               {roast.hasImage && (
                 <div className="mb-4 rounded-xl overflow-hidden border-2 border-white/20">
-                  <img src={`/api/roast/${roast.id}/image`} alt="Evidence" className="w-full h-auto object-cover max-h-64" loading="lazy" />
+                  <img src={`/api/roast/${roast.id}/image`} alt="Evidence" className="w-full h-auto object-cover max-h-48 md:max-h-64" loading="lazy" />
                 </div>
               )}
               
-              <p style={{ fontFamily: "var(--font-caveat)" }} className="text-2xl mb-4 leading-snug">"{roast.message}"</p>
+              <p style={{ fontFamily: "var(--font-caveat)" }} className="text-xl md:text-2xl mb-4 leading-snug">"{roast.message}"</p>
               
               <div className="flex justify-between items-end border-t border-black/10 pt-3 mt-2">
-                <div style={{ fontFamily: "var(--font-vietnam)" }} className="text-[10px] uppercase font-bold tracking-widest opacity-70">
+                <div style={{ fontFamily: "var(--font-vietnam)" }} className="text-[9px] md:text-[10px] uppercase font-bold tracking-widest opacity-70">
                   Target: {roast.target} <br/> — {roast.author}
                 </div>
                 

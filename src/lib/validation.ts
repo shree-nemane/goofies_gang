@@ -46,8 +46,8 @@ export const evidenceSchema = z.object({
     .refine((file) => file.size > 0, "Image file required")
     .refine((file) => file.size <= 5 * 1024 * 1024, "File must be less than 5MB")
     .refine(
-      (file) => ["image/jpeg", "image/png", "image/webp", "image/gif"].includes(file.type),
-      "Only JPEG, PNG, WebP, and GIF images allowed"
+      (file) => ["image/jpeg", "image/png", "image/webp", "image/gif", "image/jpg"].includes(file.type),
+      "Only JPEG, PNG, WebP, JPG and GIF images allowed"
     ),
   caption: z
     .string()

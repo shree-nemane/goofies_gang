@@ -50,19 +50,22 @@ export default function RootLayout({
         </ErrorBoundary>
         
         {/* Footnote */}
-        <footer className="w-full relative z-10 py-12 px-4 md:px-12 bg-[#efe8d2] border-t border-[#d8cdae] border-dashed text-sm flex flex-col md:flex-row items-center justify-between text-[#322f22]/70">
-          <div className="flex flex-col mb-4 md:mb-0">
+        <footer className="w-full relative z-10 py-12 px-4 md:px-12 bg-[#efe8d2] border-t border-[#d8cdae] border-dashed text-sm flex flex-col items-center md:items-start md:flex-row justify-between text-[#322f22]/70 gap-8">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <span className="font-bold text-lg mb-1" style={{ fontFamily: "var(--font-jakarta)" }}>GOOFIES</span>
             <span>Hand-taped with love by the GOOFIES Crew</span>
             <span className="text-xs italic mt-2 text-[#00694c]/60">We are not responsible for lost brain cells.</span>
           </div>
-          <div className="flex gap-6 uppercase tracking-widest text-[10px] font-bold">
-            <a href="/members" className="hover:text-[#b31446]">The Vault</a>
-            <a href="/privacy" className="hover:text-[#b31446]">Privacy Scribbles</a>
-            <a href="#" className="hover:text-[#b31446]">Contact the Curator</a>
-          </div>
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-[9px] uppercase tracking-[0.2em] opacity-30 mt-8 md:mt-0">
-            © 2022 Goofies Co. | Hand-taped with love by the Goofies crew
+          
+          <div className="flex flex-col items-center md:items-end gap-6 w-full md:w-auto">
+            <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-4 uppercase tracking-widest text-[10px] font-bold">
+              <a href="/members" className="hover:text-[#b31446]">The Vault</a>
+              <a href="/privacy" className="hover:text-[#b31446]">Privacy Scribbles</a>
+              <a href="#" className="hover:text-[#b31446]">Contact the Curator</a>
+            </div>
+            <div className="text-[9px] uppercase tracking-[0.2em] opacity-30 text-center md:text-right max-w-[280px] md:max-w-none">
+              © 2022 Goofies Co. | Hand-taped with love by the Goofies crew
+            </div>
           </div>
         </footer>
         <SparkleBot />
