@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { deleteQuote, deleteEvidence, deleteRoast } from "@/app/actions";
 import { X, Trash2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function DeleteButton({ id, type, className }: { id: string, type: "quote" | "evidence" | "roast", className?: string }) {
   const [modal, setModal] = useState<"closed" | "confirm" | "password">("closed");
@@ -63,78 +64,108 @@ export function DeleteButton({ id, type, className }: { id: string, type: "quote
     return (
       <button 
         onClick={showConfirmation} 
-        className={`bg-white text-gray-300 hover:text-[#b31446] border-2 border-transparent hover:bg-[#ff728d]/10 hover:border-[#ff728d] w-8 h-8 flex items-center justify-center rounded-full transition-all ${className}`}
+        className={`bg-[#b31446] text-white hover:bg-[#ff728d] w-10 h-10 flex items-center justify-center rounded-sm border-2 border-[#322f22] shadow-[4px_4px_0px_#322f22] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#322f22] ${className}`}
         aria-label="Delete"
-        title="Delete"
+        title="Burn it!"
       >
-        <Trash2 size={16} />
+        <Trash2 size={18} strokeWidth={3} />
       </button>
     );
   }
 
   if (modal === "confirm") {
     return (
-      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-        <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm border-2 border-[#b31446]">
-          <h2 className="text-xl font-bold text-[#322f22] mb-4">Confirm Deletion</h2>
-          <p className="text-gray-600 mb-6">
-            Are you sure you want to delete this {type}? This action cannot be undone.
+      <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black/40 backdrop-blur-[2px] p-4">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, rotate: -1 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          className="bg-[#fdf6e3] p-8 md:p-10 border-4 border-[#322f22] shadow-[8px_8px_0px_#ff728d] relative max-w-sm w-full z-10"
+        >
+          {/* Sticky Tape at the top */}
+          <div className="absolute -top-4 left-1/2 w-24 h-8 bg-white/60 transform -translate-x-1/2 rounded-sm -rotate-2 border border-black/5" />
+          
+          <h2 style={{ fontFamily: "var(--font-jakarta)" }} className="text-2xl md:text-3xl font-black text-[#322f22] mb-4 uppercase tracking-tighter leading-none">
+            Wait a sec!
+          </h2>
+          <p style={{ fontFamily: "var(--font-vietnam)" }} className="text-[#322f22]/80 font-bold mb-8 leading-snug">
+            Are you sure you want to scrub this {type}? There's no "undo" button in the real world (or here).
           </p>
-          <div className="flex gap-3 justify-end">
-            <button
-              onClick={closeModal}
-              className="px-4 py-2 rounded bg-gray-200 text-gray-800 hover:bg-gray-300 transition"
-            >
-              Cancel
-            </button>
+          
+          <div className="flex flex-col gap-3">
             <button
               onClick={proceedToPassword}
-              className="px-4 py-2 rounded bg-[#b31446] text-white hover:bg-[#8c0f34] transition font-bold"
+              style={{ fontFamily: "var(--font-vietnam)" }}
+              className="w-full bg-[#322f22] text-white px-6 py-4 font-black uppercase tracking-widest hover:bg-[#b31446] transition-colors text-center"
             >
-              Continue
+              Yeah, Delete It
+            </button>
+            <button
+              onClick={closeModal}
+              style={{ fontFamily: "var(--font-vietnam)" }}
+              className="w-full bg-white border-2 border-[#322f22] text-[#322f22] px-6 py-3 font-black uppercase tracking-widest hover:bg-gray-100 transition-colors text-center"
+            >
+              Nevermind
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     );
   }
 
   if (modal === "password") {
     return (
-      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-        <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm border-2 border-[#b31446]">
-          <h2 className="text-xl font-bold text-[#322f22] mb-4">Enter Secret Code</h2>
-          <input 
-            type="password" 
-            value={secret}
-            onChange={e => setSecret(e.target.value)}
-            placeholder="Secret Code"
-            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#b31446]"
-            onKeyDown={e => e.key === "Enter" && handleDelete()}
-            autoFocus
-          />
+      <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black/40 backdrop-blur-[2px] p-4">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, rotate: 1 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          className="bg-[#fdf6e3] p-8 md:p-10 border-4 border-[#322f22] shadow-[8px_8px_0px_#a8e6cf] relative max-w-sm w-full z-10"
+        >
+          {/* Sticky Tape at the top */}
+          <div className="absolute -top-4 left-1/2 w-24 h-8 bg-[#ffe082]/60 transform -translate-x-1/2 rounded-sm rotate-1 border border-black/5" />
+          
+          <h2 style={{ fontFamily: "var(--font-jakarta)" }} className="text-2xl md:text-3xl font-black text-[#322f22] mb-4 uppercase tracking-tighter leading-none">
+            Secret Code?
+          </h2>
+          
+          <div className="mb-6">
+            <label style={{ fontFamily: "var(--font-vietnam)" }} className="block text-[10px] font-black text-[#b31446] uppercase tracking-widest mb-2">Prove you're a goofy</label>
+            <input 
+              type="password" 
+              value={secret}
+              onChange={e => setSecret(e.target.value)}
+              placeholder="••••••••"
+              style={{ fontFamily: "var(--font-vietnam)" }}
+              className="w-full border-2 border-[#322f22] bg-white p-4 font-bold focus:outline-none focus:border-[#ff728d] caret-[#322f22] transition-colors"
+              onKeyDown={e => e.key === "Enter" && handleDelete()}
+              autoFocus
+            />
+          </div>
+
           {errorMsg && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 text-sm">
+            <div style={{ fontFamily: "var(--font-vietnam)" }} className="mb-6 p-4 bg-[#ff728d]/20 border-2 border-[#ff728d] text-[#b31446] font-bold text-xs uppercase tracking-tight">
               {errorMsg}
             </div>
           )}
-          <div className="flex gap-3 justify-end">
-            <button
-              onClick={closeModal}
-              disabled={isPending}
-              className="px-4 py-2 rounded bg-gray-200 text-gray-800 hover:bg-gray-300 transition disabled:opacity-50"
-            >
-              Cancel
-            </button>
+
+          <div className="flex flex-col gap-3">
             <button
               onClick={handleDelete}
               disabled={isPending}
-              className="px-4 py-2 rounded bg-[#b31446] text-white hover:bg-[#8c0f34] transition font-bold disabled:opacity-50"
+              style={{ fontFamily: "var(--font-vietnam)" }}
+              className="w-full bg-[#322f22] text-white px-6 py-4 font-black uppercase tracking-widest hover:bg-[#b31446] transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-center"
             >
-              {isPending ? "Deleting..." : "Delete"}
+              {isPending ? "Zapping..." : "Confirm Burn"}
+            </button>
+            <button
+              onClick={closeModal}
+              disabled={isPending}
+              style={{ fontFamily: "var(--font-vietnam)" }}
+              className="w-full bg-white border-2 border-[#322f22] text-[#322f22] px-6 py-3 font-black uppercase tracking-widest hover:bg-gray-100 transition-colors disabled:opacity-50 text-center"
+            >
+              Abort Mission
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     );
   }

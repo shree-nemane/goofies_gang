@@ -87,7 +87,7 @@ export default async function MemberDetail({ params }: { params: Promise<{ id: s
                      <p>It was 3 AM in Austin. {member.name} found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.</p>
                      
                      <div className="md:float-right w-full md:w-[220px] md:-mr-4 md:ml-6 my-4 bg-white p-3 shadow-md rotate-[3deg] hover:rotate-0 transition-transform">
-                        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&q=80" alt="Evidence" className="w-full aspect-video md:aspect-[4/3] object-cover" />
+                        <img src={`/profile_snapshots/${member.id}/p1.jpeg`} alt="Evidence" className="w-full aspect-video md:aspect-[4/3] object-cover" />
                         <div className="text-[8px] uppercase text-center mt-2 font-bold tracking-widest text-[#322f22]">Exhibit A</div>
                      </div>
                      <p>The next morning we missed our flight. {member.name} says it was worth it. Our stomachs disagreed.</p>
@@ -155,7 +155,7 @@ export default async function MemberDetail({ params }: { params: Promise<{ id: s
                         className="bg-white p-3 shadow-lg transition-all hover:scale-105 cursor-pointer"
                         style={{ rotate: num % 2 === 0 ? '2deg' : '-2deg' }}
                      >
-                        <img src={`/profile_snapshots/${member.id}/${num}.jpg`} alt={`Candid ${num}`} className="w-full aspect-[4/3] object-cover" />
+                        <img src={`/profile_snapshots/${member.id}/${num}.jpg`} alt={`Candid ${num}`} className="w-full aspect-[4/3] object-cover object-center" />
                      </div>
                   ))}
                </div>
