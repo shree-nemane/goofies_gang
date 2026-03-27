@@ -1,6 +1,6 @@
 export async function queryWithRetry<T>(
   fn: () => Promise<T>,
-  maxRetries = 3
+  maxRetries = 4
 ): Promise<T> {
   let lastError: Error | null = null;
 

@@ -18,6 +18,7 @@ export interface Member {
   gallery: string[];
   finalNote: string;
   theme: { primary: string; text: string };
+  storyDescription: string[];
 }
 
 export const members: Member[] = [
@@ -40,7 +41,11 @@ export const members: Member[] = [
     chaosIndex: { "Volume": 8, "Positivity": 10, "Humor": 10 },
     gallery: [],
     finalNote: "Keep carrying those positive vibes! We'd be miserable without you.",
-    theme: { primary: "#ffe082", text: "#322f22" }
+    theme: { primary: "#ffe082", text: "#322f22" },
+    storyDescription: [
+      "It was 3 AM in Austin. Harshali found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Harshali says it was worth it. Our stomachs disagreed."
+    ]
   },
   {
     id: "sudnya",
@@ -61,7 +66,11 @@ export const members: Member[] = [
     chaosIndex: { "Quietness": 10, "Romance": 9, "Don Energy": 5 },
     gallery: [],
     finalNote: "Don't let the silent demeanor fool you. Chota Don is real.",
-    theme: { primary: "#d4b5f8", text: "#4c1b7f" }
+    theme: { primary: "#d4b5f8", text: "#4c1b7f" },
+    storyDescription: [
+      "It was 3 AM in Austin. Sudnya found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Sudnya says it was worth it. Our stomachs disagreed."
+    ]
   },
   {
     id: "preeti",
@@ -82,7 +91,11 @@ export const members: Member[] = [
     chaosIndex: { "Attention Deficit": 10, "Pinch Danger": 10, "Unpredictability": 9 },
     gallery: [],
     finalNote: "We'll keep shouting your name until you finally listen.",
-    theme: { primary: "#ff728d", text: "#322f22" }
+    theme: { primary: "#ff728d", text: "#322f22" },
+    storyDescription: [
+      "It was 3 AM in Austin. Preeti found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Preeti says it was worth it. Our stomachs disagreed."
+    ]
   },
   {
     id: "mandar",
@@ -103,7 +116,11 @@ export const members: Member[] = [
     chaosIndex: { "Intellect": 8, "Idiotic Mishaps": 9, "Cinema Knowledge": 10 },
     gallery: [],
     finalNote: "You created this mess, Jaggu. You're stuck with us.",
-    theme: { primary: "#5e35b1", text: "#f3e5f5" }
+    theme: { primary: "#5e35b1", text: "#f3e5f5" },
+    storyDescription: [
+      "It was 3 AM in Austin. Mandar found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Mandar says it was worth it. Our stomachs disagreed."
+    ]
   },
   {
     id: "rahul",
@@ -118,13 +135,17 @@ export const members: Member[] = [
     insideJoke: "Philosophizing while everyone else is fighting.",
     hiddenNotes: ["Basically a wizard.", "Probably coding something weird right now."],
     longDescription: "The whimsical wizard who likes solitude. Rahul is a philosophical individual who's specially abled with technology. Rahul has an unparalleled perspective of the rituals of this planet and has an unorthodox state of mind. The group loves him for his silly comments and helpful nature.",
-    signatureLines: ["Technically speaking...", "Have you ever thought about the universe?"],
+    signatureLines: ["Technically speaking...", "Have you ever thought about the Consciousness?"],
     coreMemories: [{ title: "The Tech Philosophy", description: "Fixed a laptop while explaining the meaning of absolute nothingness." }],
     role: "The Tech-Philosopher",
     chaosIndex: { "Philosophy": 10, "Solitude": 9, "Tech Skills": 10 },
     gallery: [],
     finalNote: "Keep questioning the universe, Philosloth.",
-    theme: { primary: "#90a4ae", text: "#263238" }
+    theme: { primary: "#90a4ae", text: "#263238" },
+    storyDescription: [
+      "It was 3 AM in Austin. Rahul found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Rahul says it was worth it. Our stomachs disagreed."
+    ]
   },
   {
     id: "aditya",
@@ -145,7 +166,11 @@ export const members: Member[] = [
     chaosIndex: { "Lateness": 10, "Dark Humor": 9, "Yapping": 10 },
     gallery: [],
     finalNote: "We'd tell you to be on time, but we know it's hopeless.",
-    theme: { primary: "#ef5350", text: "#fffde7" }
+    theme: { primary: "#ef5350", text: "#fffde7" },
+    storyDescription: [
+      "Hi! My name is Aditya. I  curate and design visuals for businesses for a living. I enjoy art and also live for it, be it sketching, music or storytelling. I'm curious about topics that involve human behaviour and psychology. I do resistance training for endurance that helps me save myself from dying on a hike that me and my friends enjoy going to. I can make you giggle and wheeze out only if you are witty enough to comprehend my one liners.", 
+      "I like cats more than dogs.   Also girls with east asian facial features is what I ideally prefer when someone asks me what my type in women is. I'm an extremely slow eater and often struggle with delivering commitments on time"
+    ]
   },
   {
     id: "om-s",
@@ -166,7 +191,11 @@ export const members: Member[] = [
     chaosIndex: { "Appetite": 10, "Brainrot": 10, "Lifting": 9 },
     gallery: [],
     finalNote: "Please stop eating our food. We beg you.",
-    theme: { primary: "#76b74d", text: "#2d5f1f" }
+    theme: { primary: "#76b74d", text: "#2d5f1f" },
+    storyDescription: [
+      "It was 3 AM in Austin. Om found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Om says it was worth it. Our stomachs disagreed."
+    ]
   },
   {
     id: "shubham",
@@ -187,7 +216,11 @@ export const members: Member[] = [
     chaosIndex: { "Elusiveness": 10, "Art Skills": 10, "Dependability": 9 },
     gallery: [],
     finalNote: "Come out of hiding more often!",
-    theme: { primary: "#1976d2", text: "#e3f2fd" }
+    theme: { primary: "#1976d2", text: "#e3f2fd" },
+    storyDescription: [
+      "It was 3 AM in Austin. Shubham found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Shubham says it was worth it. Our stomachs disagreed."
+    ]
   },
   {
     id: "om-b",
@@ -208,7 +241,11 @@ export const members: Member[] = [
     chaosIndex: { "Simping": 9, "Cricket Obsession": 11, "Yapping": 8 },
     gallery: [],
     finalNote: "Rohit Sharma would be proud. Probably.",
-    theme: { primary: "#a1887f", text: "#3e2723" }
+    theme: { primary: "#a1887f", text: "#3e2723" },
+    storyDescription: [
+      "It was 3 AM in Austin. Om found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Om says it was worth it. Our stomachs disagreed."
+    ]
   },
   {
     id: "shreedarshan",
@@ -229,6 +266,10 @@ export const members: Member[] = [
     chaosIndex: { "Trustworthiness": 10, "Ape Energy": 10, "Helpfulness": 9 },
     gallery: [],
     finalNote: "Keep balancing the chaos and the care, Caveman.",
-    theme: { primary: "#9c27b0", text: "#f3e5f5" }
+    theme: { primary: "#9c27b0", text: "#f3e5f5" },
+    storyDescription: [
+      "It was 3 AM in Austin. Shreedarshan found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
+      "The next morning we missed our flight. Shreedarshan says it was worth it. Our stomachs disagreed."
+    ]
   }
 ];

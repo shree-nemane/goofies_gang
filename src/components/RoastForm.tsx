@@ -78,8 +78,6 @@ export function RoastForm() {
               <option value="harshali">Harshali</option>
               <option value="sudnya">Sudnya</option>
               <option value="preeti">Preeti</option>
-              <option value="payal-labhade">Payal Labhade</option>
-              <option value="payal-chitte">Payal Chitte</option>
               <option value="mandar">Mandar</option>
               <option value="rahul">Rahul</option>
               <option value="aditya">Aditya</option>

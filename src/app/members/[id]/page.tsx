@@ -84,13 +84,18 @@ export default async function MemberDetail({ params }: { params: Promise<{ id: s
                      {member.coreMemories[0]?.title || `The ${member.name} Experience`}
                   </h2>
                   <div style={{ fontFamily: "var(--font-vietnam)" }} className="text-[#322f22] relative text-sm md:text-[15px] leading-relaxed md:leading-loose space-y-4 md:space-y-6">
-                     <p>It was 3 AM in Austin. {member.name} found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.</p>
+                     {member.storyDescription.length > 0 && (
+                        <p>{member.storyDescription[0]}</p>
+                     )}
                      
                      <div className="md:float-right w-full md:w-[220px] md:-mr-4 md:ml-6 my-4 bg-white p-3 shadow-md rotate-[3deg] hover:rotate-0 transition-transform">
                         <img src={`/profile_snapshots/${member.id}/p1.jpeg`} alt="Evidence" className="w-full aspect-video md:aspect-[4/3] object-cover" />
                         <div className="text-[8px] uppercase text-center mt-2 font-bold tracking-widest text-[#322f22]">Exhibit A</div>
                      </div>
-                     <p>The next morning we missed our flight. {member.name} says it was worth it. Our stomachs disagreed.</p>
+
+                     {member.storyDescription.slice(1).map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                     ))}
                   </div>
                </div>
 

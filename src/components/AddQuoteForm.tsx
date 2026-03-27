@@ -7,6 +7,7 @@ export function AddQuoteForm() {
   const [isPending, setIsPending] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("white");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -66,7 +67,7 @@ export function AddQuoteForm() {
             name="text" 
             required 
             style={{ fontFamily: "var(--font-caveat)" }}
-            className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-4 text-2xl focus:outline-none focus:border-[#ff728d] caret-[#322f22] transition-colors resize-none"
+            className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-4 text-2xl focus:outline-none focus:border-[#ff728d] focus:ring-2 focus:ring-[#ff728d]/20 focus:ring-offset-1 caret-[#ff728d] transition-colors resize-none"
             placeholder="I meant to do that..."
             rows={2}
           />
@@ -80,7 +81,7 @@ export function AddQuoteForm() {
               name="author" 
               required 
               style={{ fontFamily: "var(--font-vietnam)" }}
-              className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-3 font-bold text-sm focus:outline-none focus:border-[#ff728d] caret-[#322f22] transition-colors"
+              className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-3 font-bold text-sm focus:outline-none focus:border-[#ff728d] focus:ring-2 focus:ring-[#ff728d]/20 focus:ring-offset-1 caret-[#ff728d] transition-colors"
               placeholder="Marcus"
             />
           </div>
@@ -91,7 +92,7 @@ export function AddQuoteForm() {
               name="context" 
               required 
               style={{ fontFamily: "var(--font-vietnam)" }}
-              className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-3 font-bold text-sm focus:outline-none focus:border-[#ff728d] caret-[#322f22] transition-colors"
+              className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-3 font-bold text-sm focus:outline-none focus:border-[#ff728d] focus:ring-2 focus:ring-[#ff728d]/20 focus:ring-offset-1 caret-[#ff728d] transition-colors"
               placeholder="Falling into the pool"
             />
           </div>
@@ -105,36 +106,36 @@ export function AddQuoteForm() {
               name="secret" 
               required 
               style={{ fontFamily: "var(--font-vietnam)" }}
-              className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-3 font-bold text-sm focus:outline-none focus:border-[#a8e6cf] caret-[#322f22] transition-colors"
+              className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-3 font-bold text-sm focus:outline-none focus:border-[#a8e6cf] focus:ring-2 focus:ring-[#a8e6cf]/20 focus:ring-offset-1 caret-[#ff728d] transition-colors"
               placeholder="••••••••"
             />
           </div>
           <div className="w-full sm:w-auto mt-2 sm:mt-0">
             <label style={{ fontFamily: "var(--font-vietnam)" }} className="block text-sm font-bold text-[#b31446] uppercase tracking-wider mb-2">Sticky Color</label>
             <div className="flex gap-4">
-              <label className="w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-transform bg-white">
-                <input type="radio" name="color" value="white" defaultChecked className="sr-only" />
+              <label className={`w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-all bg-white ${selectedColor === 'white' ? 'ring-4 ring-[#ff728d] ring-offset-2 scale-110' : 'opacity-70 hover:opacity-100'}`}>
+                <input type="radio" name="color" value="white" checked={selectedColor === 'white'} onChange={() => setSelectedColor('white')} className="sr-only" />
               </label>
-              <label className="w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-transform bg-red-400">
-                <input type="radio" name="color" value="red" className="sr-only" />
+              <label className={`w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-all bg-red-400 ${selectedColor === 'red' ? 'ring-4 ring-[#ff728d] ring-offset-2 scale-110' : 'opacity-70 hover:opacity-100'}`}>
+                <input type="radio" name="color" value="red" checked={selectedColor === 'red'} onChange={() => setSelectedColor('red')} className="sr-only" />
               </label>
-              <label className="w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-transform bg-blue-400">
-                <input type="radio" name="color" value="blue" className="sr-only" />
+              <label className={`w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-all bg-blue-400 ${selectedColor === 'blue' ? 'ring-4 ring-[#ff728d] ring-offset-2 scale-110' : 'opacity-70 hover:opacity-100'}`}>
+                <input type="radio" name="color" value="blue" checked={selectedColor === 'blue'} onChange={() => setSelectedColor('blue')} className="sr-only" />
               </label>
-              <label className="w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-transform bg-yellow-300">
-                <input type="radio" name="color" value="yellow" className="sr-only" />
+              <label className={`w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-all bg-yellow-300 ${selectedColor === 'yellow' ? 'ring-4 ring-[#ff728d] ring-offset-2 scale-110' : 'opacity-70 hover:opacity-100'}`}>
+                <input type="radio" name="color" value="yellow" checked={selectedColor === 'yellow'} onChange={() => setSelectedColor('yellow')} className="sr-only" />
               </label>
-              <label className="w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-transform bg-green-300">
-                <input type="radio" name="color" value="green" className="sr-only" />
+              <label className={`w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-all bg-green-300 ${selectedColor === 'green' ? 'ring-4 ring-[#ff728d] ring-offset-2 scale-110' : 'opacity-70 hover:opacity-100'}`}>
+                <input type="radio" name="color" value="green" checked={selectedColor === 'green'} onChange={() => setSelectedColor('green')} className="sr-only" />
               </label>
-              <label className="w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-transform bg-purple-300">
-                <input type="radio" name="color" value="purple" className="sr-only" />
+              <label className={`w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-all bg-purple-300 ${selectedColor === 'purple' ? 'ring-4 ring-[#ff728d] ring-offset-2 scale-110' : 'opacity-70 hover:opacity-100'}`}>
+                <input type="radio" name="color" value="purple" checked={selectedColor === 'purple'} onChange={() => setSelectedColor('purple')} className="sr-only" />
               </label>
-              <label className="w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-transform bg-pink-300">
-                <input type="radio" name="color" value="pink" className="sr-only" />
+              <label className={`w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-all bg-pink-300 ${selectedColor === 'pink' ? 'ring-4 ring-[#ff728d] ring-offset-2 scale-110' : 'opacity-70 hover:opacity-100'}`}>
+                <input type="radio" name="color" value="pink" checked={selectedColor === 'pink'} onChange={() => setSelectedColor('pink')} className="sr-only" />
               </label>
-              <label className="w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-transform bg-slate-300">
-                <input type="radio" name="color" value="slate" className="sr-only" />
+              <label className={`w-8 h-8 rounded-full cursor-pointer border-2 border-[#322f22] hover:scale-110 transition-all bg-slate-300 ${selectedColor === 'slate' ? 'ring-4 ring-[#ff728d] ring-offset-2 scale-110' : 'opacity-70 hover:opacity-100'}`}>
+                <input type="radio" name="color" value="slate" checked={selectedColor === 'slate'} onChange={() => setSelectedColor('slate')} className="sr-only" />
               </label>
             </div>
           </div>
