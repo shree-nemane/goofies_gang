@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rateLimit";
+import { queryWithRetry } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -28,10 +29,10 @@ export async function GET(
       );
     }
 
-    const roast = (await prisma.roast.findUnique({
+    const roast = (await queryWithRetry(() => prisma.roast.findUnique({
       where: { id },
       select: { imageData: true, imageType: true } as any,
-    })) as { imageData: Buffer | null; imageType: string | null } | null;
+    }))) as { imageData: Buffer | null; imageType: string | null } | null;
 
     if (!roast || !roast.imageData) {
       return NextResponse.json(

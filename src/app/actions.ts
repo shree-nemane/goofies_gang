@@ -9,6 +9,7 @@ import {
   roastTargetSchema,
 } from "@/lib/validation";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rateLimit";
+import { queryWithRetry } from "@/lib/db";
 
 const SECRET_CODE = process.env.SECRET_CODE;
 
@@ -62,7 +63,7 @@ export async function addQuote(formData: FormData): Promise<ActionResponse> {
     const validated = quoteSchema.parse(formEntries);
 
     // Create quote in database
-    const quote = await prisma.quote.create({
+    const quote = await queryWithRetry(() => prisma.quote.create({
       data: {
         text: validated.text,
         author: validated.author,
@@ -70,7 +71,7 @@ export async function addQuote(formData: FormData): Promise<ActionResponse> {
         color: validated.color,
         createdBy: validated.author, // Use author as creator
       },
-    });
+    }));
 
     revalidatePath("/quotes");
     return { success: true, data: { id: quote.id } };
@@ -103,7 +104,7 @@ export async function deleteQuote(id: string, secret: string): Promise<ActionRes
     }
 
     // Delete quote
-    await prisma.quote.delete({ where: { id } });
+    await queryWithRetry(() => prisma.quote.delete({ where: { id } }));
     revalidatePath("/quotes");
     return { success: true };
   } catch (error) {
@@ -150,7 +151,7 @@ export async function addEvidence(formData: FormData): Promise<ActionResponse> {
     const heights = ["h_64", "h_96", "h_80"] as const;
 
     // Create evidence in database
-    const evidence = await prisma.evidence.create({
+    const evidence = await queryWithRetry(() => prisma.evidence.create({
       data: {
         imageData: imageBuffer,
         imageType: imageType,
@@ -159,7 +160,7 @@ export async function addEvidence(formData: FormData): Promise<ActionResponse> {
         height: heights[Math.floor(Math.random() * heights.length)],
         createdBy: "system",
       },
-    });
+    }));
 
     revalidatePath("/gallery");
     return { success: true, data: { id: evidence.id } };
@@ -193,7 +194,7 @@ export async function deleteEvidence(id: string, secret: string): Promise<Action
     }
 
     // Delete evidence
-    await prisma.evidence.delete({ where: { id } });
+    await queryWithRetry(() => prisma.evidence.delete({ where: { id } }));
     revalidatePath("/gallery");
     return { success: true };
   } catch (error) {
@@ -259,7 +260,7 @@ export async function addRoast(formData: FormData): Promise<ActionResponse> {
     }
 
     // Create roast in database
-    const roast = await prisma.roast.create({
+    const roast = await queryWithRetry(() => prisma.roast.create({
       data: {
         target: validated.target,
         author: validated.author,
@@ -268,7 +269,7 @@ export async function addRoast(formData: FormData): Promise<ActionResponse> {
         imageType,
         createdBy: validated.author,
       },
-    });
+    }));
 
     revalidatePath("/wall-of-shame");
     return { success: true, data: { id: roast.id } };
@@ -299,7 +300,7 @@ export async function incrementBurn(id: string, userId: string): Promise<ActionR
     }
 
     // Use transaction to prevent race conditions
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await queryWithRetry(() => prisma.$transaction(async (tx) => {
       // Check if user already burned this roast
       const existingBurn = await tx.userBurn.findUnique({
         where: {
@@ -338,7 +339,7 @@ export async function incrementBurn(id: string, userId: string): Promise<ActionR
       });
 
       return updated;
-    });
+    }));
 
     revalidatePath("/wall-of-shame");
     return { success: true, data: { burns: result.burns } };
@@ -371,7 +372,7 @@ export async function deleteRoast(id: string, secret: string): Promise<ActionRes
     }
 
     // Delete roast (cascades to UserBurn records)
-    await prisma.roast.delete({ where: { id } });
+    await queryWithRetry(() => prisma.roast.delete({ where: { id } }));
     revalidatePath("/wall-of-shame");
     return { success: true };
   } catch (error) {
