@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navigation } from "../components/Navigation";
 import { SparkleBot } from "../components/SparkleBot";
 import { ErrorBoundary } from "../components/ErrorBoundary";
+import { Analytics } from "@vercel/analytics/next";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -139,6 +140,7 @@ export default function RootLayout({
           </div>
         </footer>
         <SparkleBot />
+        <Analytics />
       </body>
     </html>
   );
