@@ -68,7 +68,7 @@ export default async function GalleryPage(props: PageProps) {
         </div>
 
         {/* Pagination Controls */}
-        <div className="mt-16 flex justify-center items-center gap-4 flex-wrap pb-12">
+        <div style={{ fontFamily: "var(--font-jakarta)" }} className="mt-16 flex justify-center items-center gap-4 flex-wrap pb-12">
           {pagination.hasPrevPage && (
             <Link
               href={`/gallery?page=${page - 1}`}

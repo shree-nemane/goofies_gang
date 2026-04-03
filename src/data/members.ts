@@ -43,8 +43,8 @@ export const members: Member[] = [
     finalNote: "Keep carrying those positive vibes! We'd be miserable without you.",
     theme: { primary: "#ffe082", text: "#322f22" },
     storyDescription: [
-      "It was 3 AM in Austin. Harshali found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
-      "The next morning we missed our flight. Harshali says it was worth it. Our stomachs disagreed."
+      "Hi, I’m Harshali, and my journey is still in progress—but that’s what makes it special.There was a time when I felt confused about my direction, like many students do. I didn’t have everything figured out, but I had one thingdetermination to improve myself little by little. Instead of waiting for the ‘perfect moment,’ I started learning step by step whether it was understanding coding, exploring new things. And right now, I’m focusing on building my skills in cybersecurity as well, because I truly want to grow in this field." ,
+      "There were days when things felt difficult, when I doubted myself, but I didn’t stop. I kept going, even if the progress was slow. Because I realized that consistency matters more than perfection. There was also a phase when I felt like I wanted to go back to my first or second year, to start fresh… and yes, I even faced the possibility of a year drop. But even then, I chose not to give up.Today, I’m someone who believes that growth doesn’t happen overnight it happens through small efforts every single day. I’m still learning, still growing, but I’m proud that I didn’t give up on myself.If my journey can inspire even one person to start, to believe in themselves, or to keep going when it’s hard then that means everything to me.",
     ]
   },
   {
@@ -118,8 +118,8 @@ export const members: Member[] = [
     finalNote: "You created this mess, Jaggu. You're stuck with us.",
     theme: { primary: "#5e35b1", text: "#f3e5f5" },
     storyDescription: [
-      "It was 3 AM in Austin. Mandar found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
-      "The next morning we missed our flight. Mandar says it was worth it. Our stomachs disagreed."
+      "Watch movies, reads books, cant read ppl, drives bike, dont drive girls crazy, 3+ bodycount, modi heater, rahul hater, leftist by ideology, righty by hand, righteous by standards, identifies as lesbian, believes that women are God,  one piece, loveeee cats they are soo cute i wanna die surrounded by cats kittens😻😻😻😻💘💘💘",
+      "Imma cat mother, totally 100% chalant, wanna marry Sadie sink, koi Gibson Les Paul Modern Figured Electric Guitar LPM01CXCH1 - Cobalt Burst leke dedo 😭😭😭🙏🏻🙏🏻🙏🏻, aspiring bungee jumper without bungee, believes in 1 khun maaf, self lover, self hater"
     ]
   },
   {
