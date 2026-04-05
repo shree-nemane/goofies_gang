@@ -118,8 +118,8 @@ export const members: Member[] = [
     finalNote: "You created this mess, Jaggu. You're stuck with us.",
     theme: { primary: "#5e35b1", text: "#f3e5f5" },
     storyDescription: [
-      "Watch movies, reads books, cant read ppl, drives bike, dont drive girls crazy, 3+ bodycount, modi heater, rahul hater, leftist by ideology, righty by hand, righteous by standards, identifies as lesbian, believes that women are God,  one piece, loveeee cats they are soo cute i wanna die surrounded by cats kittens😻😻😻😻💘💘💘",
-      "Imma cat mother, totally 100% chalant, wanna marry Sadie sink, koi Gibson Les Paul Modern Figured Electric Guitar LPM01CXCH1 - Cobalt Burst leke dedo 😭😭😭🙏🏻🙏🏻🙏🏻, aspiring bungee jumper without bungee, believes in 1 khun maaf, self lover, self hater"
+      "Hey world I'm mandar and i watch movies, reads books, cant read ppl, drives bike, dont drive girls crazy, 3+ bodycount, modi heater, rahul hater, leftist by ideology, righty by hand, righteous by mind, identifies as lesbian, btw I'm a guy 6ft tol, believes that women are God,  one piece is real, looooovvvveeee cats they are soo cute i wanna die surrounded by cats kittens😻😻😻😻💘💘💘", 
+      "imma cat mother, totally 100% chalant, wanna marry Sadie sink, koi Gibson Les Paul Modern Figured Electric Guitar LPM01CXCH1 - Cobalt Burst leke dedo 😭😭😭🙏🏻🙏🏻🙏🏻, aspiring bungee jumper without bungee, believes in 1 khun maaf, self lover, self hater.",
     ]
   },
   {

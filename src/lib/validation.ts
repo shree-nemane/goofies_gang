@@ -88,7 +88,7 @@ export const roastSchema = z.object({
   message: z
     .string()
     .min(5, "Message must be at least 5 characters")
-    .max(1000, "Message must be less than 1000 characters")
+    .max(6000, "Message must be less than 6000 characters")
     .refine(notWhitespaceOnly, "Message cannot be whitespace only")
     .transform((val) => sanitizeHtml(val.trim())),
   secret: z.string().min(1, "Secret code required"),
@@ -99,8 +99,6 @@ export const VALID_ROAST_TARGETS = [
   "harshali",
   "sudnya",
   "preeti",
-  "payal-labhade",
-  "payal-chitte",
   "mandar",
   "rahul",
   "aditya",
