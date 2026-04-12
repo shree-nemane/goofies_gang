@@ -24,30 +24,40 @@ export default async function RoastPage(props: PageProps) {
   const { page } = getPaginationParams(searchParams, pageSize);
   const offset = getPaginationOffset(page, pageSize);
 
-  // Get total count
-  const total = await queryWithRetry(() => prisma.roast.count());
+  // Get total count and roasts in parallel
+  const [total, roasts] = await Promise.all([
+    queryWithRetry(() => prisma.roast.count()),
+    queryWithRetry(() => prisma.roast.findMany({
+      orderBy: { createdAt: "desc" },
+      take: pageSize,
+      skip: offset,
+      select: {
+        id: true,
+        target: true,
+        author: true,
+        message: true,
+        burns: true,
+        createdAt: true,
+      },
+    }))
+  ]);
 
-  // Get paginated roasts
-  const roasts = await queryWithRetry(() => prisma.roast.findMany({
-    orderBy: { createdAt: "asc" }, // Newest at the bottom like a chat feed
-    take: pageSize,
-    skip: offset,
-    select: {
-      id: true,
-      target: true,
-      author: true,
-      message: true,
-      burns: true,
-      createdAt: true,
-      imageUrl: true,
+  // Get image existence in a separate query (still needs the IDs from the previous step)
+  const roastsWithImages = await queryWithRetry(() => prisma.roast.findMany({
+    where: {
+      id: { in: roasts.map(r => r.id) },
+      imageData: { not: null },
     },
+    select: { id: true },
   }));
+
+  const imageIds = new Set(roastsWithImages.map(r => r.id));
 
   const pagination = calculatePaginationMeta(page, pageSize, total);
 
   const roastsWithHasImage = roasts.map(roast => ({
     ...roast,
-    hasImage: roast.imageUrl !== null,
+    hasImage: imageIds.has(roast.id),
   }));
 
   return (

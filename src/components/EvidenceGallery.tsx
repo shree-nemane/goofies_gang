@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { DeleteButton } from "@/components/DeleteButton";
 
@@ -38,12 +39,11 @@ export function EvidenceGallery({ items }: { items: Evidence[] }) {
         <motion.div 
           key={img.id}
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ delay: (i % 3) * 0.05 }}
-          className="break-inside-avoid relative w-full mb-6 md:mb-8 transform hover:scale-102 sm:hover:scale-105 hover:rotate-0 transition-all duration-300 z-10 cursor-zoom-in group"
-          // Disable rotation on mobile for better fit and less horizontal overflow risk
-          style={{ rotate: typeof window !== 'undefined' && window.innerWidth < 640 ? '0deg' : `${img.rotation}deg` }}
+          className="break-inside-avoid relative w-full mb-6 md:mb-8 transform hover:scale-102 sm:hover:scale-105 hover:rotate-0 transition-all duration-300 z-10 cursor-zoom-in group max-sm:!rotate-0"
+          style={{ rotate: `${img.rotation}deg` }}
         >
           <div className="bg-white p-3 md:p-4 shadow-ambient">
             <div className={`absolute -top-2 md:-top-3 left-1/2 w-12 md:w-16 h-4 md:h-5 transform -translate-x-1/2 rounded-sm opacity-90 ${i % 2 === 0 ? 'bg-[#ff728d] -rotate-2' : 'bg-[#a8e6cf] rotate-1'}`} />

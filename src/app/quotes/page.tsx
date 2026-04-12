@@ -23,13 +23,15 @@ export default async function QuotesPage(props: PageProps) {
   const { page } = getPaginationParams(searchParams, pageSize);
   const offset = getPaginationOffset(page, pageSize);
 
-  const total = await queryWithRetry(() => prisma.quote.count());
-
-  const quotesInfo = await queryWithRetry(() => prisma.quote.findMany({
-    orderBy: { createdAt: "desc" },
-    take: pageSize,
-    skip: offset,
-  }));
+  // Get total count and quotes in parallel
+  const [total, quotesInfo] = await Promise.all([
+    queryWithRetry(() => prisma.quote.count()),
+    queryWithRetry(() => prisma.quote.findMany({
+      orderBy: { createdAt: "desc" },
+      take: pageSize,
+      skip: offset,
+    }))
+  ]);
   
   const pagination = calculatePaginationMeta(page, pageSize, total);
 

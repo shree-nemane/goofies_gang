@@ -23,22 +23,22 @@ export default async function GalleryPage(props: PageProps) {
   const { page } = getPaginationParams(searchParams, pageSize);
   const offset = getPaginationOffset(page, pageSize);
 
-  // Get total count
-  const total = await queryWithRetry(() => prisma.evidence.count());
-
-  // Get paginated items
-  const itemsInfo = await queryWithRetry(() => prisma.evidence.findMany({
-    orderBy: { createdAt: "desc" },
-    take: pageSize,
-    skip: offset,
-    select: {
-      id: true,
-      caption: true,
-      height: true,
-      rotation: true,
-      createdAt: true,
-    },
-  }));
+  // Get total count and paginated items in parallel
+  const [total, itemsInfo] = await Promise.all([
+    queryWithRetry(() => prisma.evidence.count()),
+    queryWithRetry(() => prisma.evidence.findMany({
+      orderBy: { createdAt: "desc" },
+      take: pageSize,
+      skip: offset,
+      select: {
+        id: true,
+        caption: true,
+        height: true,
+        rotation: true,
+        createdAt: true,
+      },
+    }))
+  ]);
 
   const pagination = calculatePaginationMeta(page, pageSize, total);
 
