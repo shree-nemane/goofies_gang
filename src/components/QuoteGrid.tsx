@@ -33,7 +33,7 @@ export function QuoteGrid({ quotes }: { quotes: Quote[] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 gap-y-12 md:gap-y-16 mt-8 pb-20 md:pb-32">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-8 gap-y-12 md:gap-y-16 lg:gap-y-12 mt-8 pb-20 md:pb-32">
       {quotes.map((q, i) => (
         <motion.div
           key={q.id}
@@ -41,7 +41,7 @@ export function QuoteGrid({ quotes }: { quotes: Quote[] }) {
           animate={{ opacity: 1, scale: 1, rotate: i % 2 === 0 ? -1.5 : 1 }}
           whileHover={{ scale: 1.05, rotate: 0, zIndex: 50 }}
           transition={{ type: "spring", stiffness: 200, damping: 15 }}
-          className={`${QUOTE_COLOR_CLASS_MAP[q.color] ?? q.color ?? "bg-white"} p-6 md:p-10 shadow-ambient relative flex flex-col justify-between min-h-[280px] md:aspect-square group cursor-default`}
+          className={`${QUOTE_COLOR_CLASS_MAP[q.color] ?? q.color ?? "bg-white"} p-6 md:p-8 lg:p-10 shadow-ambient relative flex flex-col justify-between min-h-[300px] md:min-h-[350px] h-auto group cursor-default`}
           style={{ borderRadius: "0.2rem" }}
         >
           <div className={`absolute -top-3 left-1/2 w-16 md:w-20 h-5 md:h-6 bg-white/50 backdrop-blur-sm transform -translate-x-1/2 rounded-sm ${i % 2 === 0 ? '-rotate-2' : 'rotate-1'}`} />
@@ -59,7 +59,7 @@ export function QuoteGrid({ quotes }: { quotes: Quote[] }) {
             <p style={{ fontFamily: "var(--font-vietnam)" }} className="text-[9px] md:text-[10px] uppercase font-bold text-[#b31446] mt-1 tracking-widest opacity-80 truncate">{q.context}</p>
           </div>
 
-          <div className="absolute -bottom-3 -right-3 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute -bottom-3 -right-3 md:opacity-0 group-hover:opacity-100 transition-opacity">
             <DeleteButton id={q.id} type="quote" />
           </div>
         </motion.div>

@@ -57,7 +57,7 @@ export function RoastFeed({ roasts }: { roasts: Roast[] }) {
             </div>
             
             <div className={`${palette.bg} p-4 md:p-6 ${palette.text} ${tailClass} shadow-[4px_4px_0px_rgba(0,0,0,0.1)] w-full relative`}>
-              <DeleteButton id={roast.id} type="roast" className={`absolute -top-3 ${isEven ? '-right-3' : '-left-3'} opacity-0 group-hover:opacity-100 transition-opacity`} />
+              <DeleteButton id={roast.id} type="roast" className={`absolute -top-3 ${isEven ? '-right-3' : '-left-3'} md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-opacity`} />
               
               {roast.hasImage && (
                 <div className="mb-4 rounded-xl overflow-hidden border-2 border-white/20">

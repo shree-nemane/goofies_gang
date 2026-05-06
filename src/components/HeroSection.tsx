@@ -12,7 +12,7 @@ export function HeroSection() {
         initial={{ opacity: 0, rotate: -15, x: -100, y: -50 }}
         animate={{ opacity: 1, rotate: -5, x: 0, y: 0 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="absolute top-10 left-4 md:left-12 lg:left-24 bg-white p-2 md:p-4 shadow-ambient transform z-0 hidden sm:block"
+        className="absolute top-10 left-4 md:left-6 lg:left-24 bg-white p-2 md:p-3 lg:p-4 shadow-ambient transform z-0 hidden sm:block md:opacity-20 lg:opacity-100"
         style={{ borderRadius: "0.25rem" }}
       >
         <img 
@@ -27,7 +27,7 @@ export function HeroSection() {
         initial={{ opacity: 0, rotate: 15, x: 100, y: 50 }}
         animate={{ opacity: 1, rotate: 8, x: 0, y: 0 }}
         transition={{ duration: 1, delay: 0.4 }}
-        className="absolute bottom-10 right-4 md:right-16 lg:right-32 bg-white p-2 md:p-4 shadow-ambient transform z-0 hidden md:block"
+        className="absolute bottom-10 right-4 md:right-16 lg:right-32 bg-white p-2 md:p-4 shadow-ambient transform z-0 hidden lg:block"
         style={{ borderRadius: "0.25rem" }}
       >
         <img 
@@ -50,7 +50,7 @@ export function HeroSection() {
             <span style={{ fontFamily: "var(--font-caveat)" }} className="text-sm md:text-lg font-bold whitespace-nowrap">⚠️ FRAGILE BRAIN</span>
           </div>
           <h1
-            className="text-5xl sm:text-7xl md:text-9xl font-black text-[#b31446] tracking-tight uppercase leading-none"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-[#b31446] tracking-tight uppercase leading-none"
             style={{ fontFamily: "var(--font-jakarta)" }}
           >
             GOOFIES

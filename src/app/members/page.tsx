@@ -12,7 +12,7 @@ export default function MembersPage() {
     <div className="w-full min-h-screen py-16 md:py-24 px-4 bg-[#fdf6e3] overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 md:mb-20 relative px-4">
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-[#322f22] tracking-tighter uppercase leading-none" style={{ fontFamily: "var(--font-jakarta)" }}>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#322f22] tracking-tighter uppercase leading-none" style={{ fontFamily: "var(--font-jakarta)" }}>
             The Crew
           </h1>
           <div className="w-full max-w-lg mx-auto h-2 bg-[#ff728d] mt-2 mb-6 transform -rotate-1 opacity-60 hidden sm:block" />

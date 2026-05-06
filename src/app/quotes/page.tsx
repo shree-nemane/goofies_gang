@@ -43,7 +43,7 @@ export default async function QuotesPage(props: PageProps) {
         <div className="text-center mb-12 relative w-full px-4">
           <div className="absolute -left-4 md:-left-12 -top-8 md:-top-12 text-[#ff728d] opacity-10 text-7xl md:text-9xl pointer-events-none">"</div>
           <div className="absolute right-0 bottom-0 text-[#b31446] opacity-10 text-7xl md:text-9xl rotate-180 pointer-events-none">"</div>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-[#322f22] tracking-tighter uppercase leading-none" style={{ fontFamily: "var(--font-jakarta)" }}>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#322f22] tracking-tighter uppercase leading-none" style={{ fontFamily: "var(--font-jakarta)" }}>
             The Quotebook
           </h1>
           <p style={{ fontFamily: "var(--font-caveat)" }} className="mt-4 md:mt-6 text-[#322f22]/70 text-2xl md:text-3xl max-w-2xl mx-auto italic leading-relaxed">

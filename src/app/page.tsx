@@ -3,8 +3,30 @@ import { IntroSection } from "../components/IntroSection";
 import { GroupDynamics } from "../components/GroupDynamics";
 import { MemberCard } from "../components/MemberCard";
 import { members } from "../data/members";
+import { prisma } from "@/lib/prisma";
+import { queryWithRetry } from "@/lib/db";
 
-export default function Home() {
+export default async function Home() {
+  const leaderboardData = await queryWithRetry(() => prisma.roast.groupBy({
+    by: ["target"],
+    _sum: {
+      burns: true,
+    },
+    _count: {
+      _all: true,
+    },
+  }));
+
+  const leaderboard = leaderboardData
+    .map(entry => ({
+      target: entry.target,
+      totalBurns: (entry._sum.burns || 0) + entry._count._all,
+    }))
+    .sort((a, b) => b.totalBurns - a.totalBurns)
+    .slice(0, 1); // Only top 1 for current idiot
+
+  const currentIdiot = leaderboard[0]?.target ?? members[0]?.id ?? "RAHUL";
+
   return (
     <div className="w-full flex flex-col items-center overflow-x-hidden">
       <HeroSection />
@@ -41,7 +63,7 @@ export default function Home() {
       </div>
 
       <div className="w-full pt-12 pb-20 md:pb-32">
-        <GroupDynamics />
+        <GroupDynamics currentIdiot={currentIdiot} />
       </div>
 
       {/* Member Preview Section */}
@@ -55,7 +77,7 @@ export default function Home() {
           </p>
           <div 
             style={{ fontFamily: "var(--font-jakarta)" }} 
-            className="inline-block bg-[#ffe082] px-4 py-1 rotate-2 shadow-sm font-bold text-xs md:text-sm uppercase md:ml-64 md:-mt-12 mt-4"
+            className="inline-block bg-[#ffe082] px-4 py-1 rotate-2 shadow-sm font-bold text-xs md:text-sm uppercase md:ml-32 lg:ml-64 md:-mt-12 mt-4"
           >
             Certified Goofs
           </div>

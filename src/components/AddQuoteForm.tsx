@@ -69,7 +69,8 @@ export function AddQuoteForm() {
             style={{ fontFamily: "var(--font-caveat)" }}
             className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-4 text-2xl focus:outline-none focus:border-[#ff728d] focus:ring-2 focus:ring-[#ff728d]/20 focus:ring-offset-1 caret-[#ff728d] transition-colors resize-none"
             placeholder="I meant to do that..."
-            rows={2}
+            maxLength={400}
+            rows={3}
           />
         </div>
         
@@ -83,6 +84,7 @@ export function AddQuoteForm() {
               style={{ fontFamily: "var(--font-vietnam)" }}
               className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-3 font-bold text-sm focus:outline-none focus:border-[#ff728d] focus:ring-2 focus:ring-[#ff728d]/20 focus:ring-offset-1 caret-[#ff728d] transition-colors"
               placeholder="Marcus"
+              maxLength={40}
             />
           </div>
           <div>
@@ -94,6 +96,7 @@ export function AddQuoteForm() {
               style={{ fontFamily: "var(--font-vietnam)" }}
               className="w-full border-2 border-[#322f22] bg-[#fdf6e3] p-3 font-bold text-sm focus:outline-none focus:border-[#ff728d] focus:ring-2 focus:ring-[#ff728d]/20 focus:ring-offset-1 caret-[#ff728d] transition-colors"
               placeholder="Falling into the pool"
+              maxLength={60}
             />
           </div>
         </div>

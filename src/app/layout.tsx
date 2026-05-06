@@ -132,7 +132,7 @@ export default function RootLayout({
             <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-4 uppercase tracking-widest text-[10px] font-bold">
               <a href="/members" className="hover:text-[#b31446]">The Vault</a>
               <a href="/privacy" className="hover:text-[#b31446]">Privacy Scribbles</a>
-              <a href="#" className="hover:text-[#b31446]">Contact the Curator</a>
+              <a href="/contact" className="hover:text-[#b31446]">Contact the Curator</a>
             </div>
             <div className="text-[9px] uppercase tracking-[0.2em] opacity-30 text-center md:text-right max-w-[280px] md:max-w-none">
               © 2022 Goofies Co. | Hand-taped with love by the Goofies crew

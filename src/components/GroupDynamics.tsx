@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Users, Camera, Flame } from "lucide-react";
 
-export function GroupDynamics() {
+export function GroupDynamics({ currentIdiot }: { currentIdiot: string }) {
   return (
     <section className="py-12 md:py-24 px-4 w-full relative">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -64,7 +64,7 @@ export function GroupDynamics() {
           <div className="absolute -top-3 left-10 w-12 h-4 bg-white/40 transform -rotate-2 rounded-sm" />
           <p className="font-black text-lg md:text-xl uppercase text-black/90">
             Current Active Idiot: <br className="sm:hidden" />
-            <span className="bg-black text-white px-2 py-1 rounded sm:ml-2 inline-block mt-2 sm:mt-0">RAHUL</span>
+            <span className="bg-black text-white px-2 py-1 rounded sm:ml-2 inline-block mt-2 sm:mt-0">{currentIdiot}</span>
           </p>
         </motion.div>
 

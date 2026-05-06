@@ -342,6 +342,7 @@ export async function incrementBurn(id: string, userId: string): Promise<ActionR
     }));
 
     revalidatePath("/wall-of-shame");
+    revalidatePath("/");
     return { success: true, data: { burns: result.burns } };
   } catch (error) {
     console.error("Error incrementing burn:", error);
@@ -374,6 +375,7 @@ export async function deleteRoast(id: string, secret: string): Promise<ActionRes
     // Delete roast (cascades to UserBurn records)
     await queryWithRetry(() => prisma.roast.delete({ where: { id } }));
     revalidatePath("/wall-of-shame");
+    revalidatePath("/");
     return { success: true };
   } catch (error) {
     console.error("Error deleting roast:", error);

@@ -43,7 +43,7 @@ export const members: Member[] = [
     finalNote: "Keep carrying those positive vibes! We'd be miserable without you.",
     theme: { primary: "#ffe082", text: "#322f22" },
     storyDescription: [
-      "Hi, I’m Harshali, and my journey is still in progress—but that’s what makes it special.There was a time when I felt confused about my direction, like many students do. I didn’t have everything figured out, but I had one thingdetermination to improve myself little by little. Instead of waiting for the ‘perfect moment,’ I started learning step by step whether it was understanding coding, exploring new things. And right now, I’m focusing on building my skills in cybersecurity as well, because I truly want to grow in this field." ,
+      "Hi, I’m Harshali, and my journey is still in progress—but that’s what makes it special.There was a time when I felt confused about my direction, like many students do. I didn’t have everything figured out, but I had one thingdetermination to improve myself little by little. Instead of waiting for the ‘perfect moment,’ I started learning step by step whether it was understanding coding, exploring new things. And right now, I’m focusing on building my skills in cybersecurity as well, because I truly want to grow in this field.",
       "There were days when things felt difficult, when I doubted myself, but I didn’t stop. I kept going, even if the progress was slow. Because I realized that consistency matters more than perfection. There was also a phase when I felt like I wanted to go back to my first or second year, to start fresh… and yes, I even faced the possibility of a year drop. But even then, I chose not to give up.Today, I’m someone who believes that growth doesn’t happen overnight it happens through small efforts every single day. I’m still learning, still growing, but I’m proud that I didn’t give up on myself.If my journey can inspire even one person to start, to believe in themselves, or to keep going when it’s hard then that means everything to me.",
     ]
   },
@@ -118,7 +118,7 @@ export const members: Member[] = [
     finalNote: "You created this mess, Jaggu. You're stuck with us.",
     theme: { primary: "#5e35b1", text: "#f3e5f5" },
     storyDescription: [
-      "Hey world I'm mandar and i watch movies, reads books, cant read ppl, drives bike, dont drive girls crazy, 3+ bodycount, modi heater, rahul hater, leftist by ideology, righty by hand, righteous by mind, identifies as lesbian, btw I'm a guy 6ft tol, believes that women are God,  one piece is real, looooovvvveeee cats they are soo cute i wanna die surrounded by cats kittens😻😻😻😻💘💘💘", 
+      "Hey world I'm mandar and i watch movies, reads books, cant read ppl, drives bike, dont drive girls crazy, 3+ bodycount, modi heater, rahul hater, leftist by ideology, righty by hand, righteous by mind, identifies as lesbian, btw I'm a guy 6ft tol, believes that women are God,  one piece is real, looooovvvveeee cats they are soo cute i wanna die surrounded by cats kittens😻😻😻😻💘💘💘",
       "imma cat mother, totally 100% chalant, wanna marry Sadie sink, koi Gibson Les Paul Modern Figured Electric Guitar LPM01CXCH1 - Cobalt Burst leke dedo 😭😭😭🙏🏻🙏🏻🙏🏻, aspiring bungee jumper without bungee, believes in 1 khun maaf, self lover, self hater.",
     ]
   },
@@ -168,7 +168,7 @@ export const members: Member[] = [
     finalNote: "We'd tell you to be on time, but we know it's hopeless.",
     theme: { primary: "#ef5350", text: "#fffde7" },
     storyDescription: [
-      "Hi! My name is Aditya. I  curate and design visuals for businesses for a living. I enjoy art and also live for it, be it sketching, music or storytelling. I'm curious about topics that involve human behaviour and psychology. I do resistance training for endurance that helps me save myself from dying on a hike that me and my friends enjoy going to. I can make you giggle and wheeze out only if you are witty enough to comprehend my one liners.", 
+      "Hi! My name is Aditya. I  curate and design visuals for businesses for a living. I enjoy art and also live for it, be it sketching, music or storytelling. I'm curious about topics that involve human behaviour and psychology. I do resistance training for endurance that helps me save myself from dying on a hike that me and my friends enjoy going to. I can make you giggle and wheeze out only if you are witty enough to comprehend my one liners.",
       "I like cats more than dogs.   Also girls with east asian facial features is what I ideally prefer when someone asks me what my type in women is. I'm an extremely slow eater and often struggle with delivering commitments on time"
     ]
   },
@@ -193,8 +193,10 @@ export const members: Member[] = [
     finalNote: "Please stop eating our food. We beg you.",
     theme: { primary: "#76b74d", text: "#2d5f1f" },
     storyDescription: [
-      "It was 3 AM in Austin. Om found a food truck that only accepted bartering. We traded a used frisbee and gummy worms for six cilantro tacos.",
-      "The next morning we missed our flight. Om says it was worth it. Our stomachs disagreed."
+      "Hello eberybody me Om from k-wada, I am simple boy but danger inside😈, आमच्याशी भिडायचं नाही… direct delete व्हाल 😏, I love Dosa, mendu vada, idli and chicken and family, Royal नाही पण loyal नक्की आहे 😎, Im good at interpretation, thinking sometimes critical, i love talking mochka, plays every game competitively, a bum at love life, तू बदलली नाहीस… तू खरी झालीस 💔, I am not change, people are change 🤓, मन खूप मोठं ठेवलं… म्हणून लोकांनी वापरलं 💔(Self - explanatory), My heart is very pain but I am smile 🙂💔, हसणाऱ्यांच्या मागे खूप वेदना असतात 😔",
+      "I love, make, breathe jokes like jokes on you, Pose sed by brainrotum, Disturb आहे… busiii करू नका 📵, कामाची गरज आहे कुठे पाच पन्नास भेटतील तर सांगा ,Smile please… दिल आ जाएगा 😍, I dont smile coz i low feeling , Happy आहे पण single आहे🔂, आमचा नेम आणि आमचं प्रेम दोन्ही भारी आहे, जळणाऱ्यांनी जळत राहावं आपण  उसपे फकसत शकते rahenge🔥, इफ यु आर dad आयाम bad👎, बुरी नजर वाले आपके फ्राइज हमेशा सॉगि हो ",
+      "Taken💍- Mandar Jadhav, I learnt this the hard way - ज्याच करायला जावा भोला तो म्हणतो माझच खोला🥲",
+      "“REAL EYES REALIZE REAL LIES, AND THE REALEST TRUTH IS THAT NOTHING STAYS, BECAUSE CHANGE IS THE ONLY CONSTANT. - mi”"
     ]
   },
   {

@@ -5,20 +5,15 @@ type LeaderboardEntry = {
   totalBurns: number;
 };
 
-export function RoastLeaderboard({ roasts }: { roasts: any[] }) {
-  // Aggregate burns by target
-  const burnMap = new Map<string, number>();
-  
-  roasts.forEach(r => {
-    const current = burnMap.get(r.target) || 0;
-    // Add +1 for the roast itself, plus any fire reactions it got
-    burnMap.set(r.target, current + 1 + r.burns);
-  });
-
-  const leaderboard: LeaderboardEntry[] = Array.from(burnMap.entries())
-    .map(([target, totalBurns]) => ({ target, totalBurns }))
-    .sort((a, b) => b.totalBurns - a.totalBurns)
-    .slice(0, 5); // top 5
+export function RoastLeaderboard({ leaderboardData }: { leaderboardData: Array<{ target: string; _sum: { burns: number | null }; _count: { _all: number } }> }) {
+  // Transform the aggregated data into leaderboard entries
+  const leaderboard: LeaderboardEntry[] = leaderboardData
+    .map(entry => ({
+      target: entry.target,
+      totalBurns: (entry._sum.burns || 0) + entry._count._all // burns count + number of roasts
+    }))
+    .filter(entry => entry.totalBurns > 0) // Only show entries with burns
+    .sort((a, b) => b.totalBurns - a.totalBurns);
 
   if (leaderboard.length === 0) return null;
 

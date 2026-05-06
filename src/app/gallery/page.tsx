@@ -50,7 +50,7 @@ export default async function GalleryPage(props: PageProps) {
           <div style={{ fontFamily: "var(--font-jakarta)" }} className="inline-block bg-[#ffe082] px-4 py-1 rotate-[-2deg] mb-4 text-[10px] md:text-[12px] font-black uppercase tracking-widest text-[#322f22]">
             Visual Evidence Only
           </div>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-[#322f22] tracking-tighter uppercase leading-none px-4" style={{ fontFamily: "var(--font-jakarta)" }}>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#322f22] tracking-tighter uppercase leading-none px-4" style={{ fontFamily: "var(--font-jakarta)" }}>
             The <span className="text-[#b31446] underline decoration-wavy decoration-[#ff728d]">Evidence</span> Locker
           </h1>
           <p style={{ fontFamily: "var(--font-caveat)" }} className="mt-6 text-[#322f22]/70 text-xl md:text-2xl max-w-xl mx-auto px-6">

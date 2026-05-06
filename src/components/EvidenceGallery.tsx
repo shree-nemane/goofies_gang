@@ -67,7 +67,7 @@ export function EvidenceGallery({ items }: { items: Evidence[] }) {
               </div>
             )}
             
-            <div className="absolute -bottom-3 -right-3 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute -bottom-3 -right-3 md:opacity-0 group-hover:opacity-100 transition-opacity">
               <DeleteButton id={img.id} type="evidence" />
             </div>
           </div>
