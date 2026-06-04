@@ -7,8 +7,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Evidence Locker",
-  description: "A collection of photographic evidence of our most chaotic and questionable moments. No filters, just raw memories.",
+  title: "Evidence Locker | GOOFIES GANG",
+  description: "A collection of photographic evidence of our most chaotic and questionable moments. No filters, just raw memories from the GOOFIES Gang.",
 };
 
 export const revalidate = 60; // Revalidate every minute

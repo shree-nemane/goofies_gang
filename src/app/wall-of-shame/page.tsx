@@ -8,8 +8,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The Burn Unit",
-  description: "A chronological feed of roasts and burning insults between friends. Vote for your favorite burns and see who tops the leaderboard.",
+  title: "The Burn Unit | GOOFIES GANG",
+  description: "A chronological feed of roasts and burning insults between members of the GOOFIES Gang. Vote for your favorite burns and see who tops the leaderboard.",
 };
 
 export const revalidate = 60; // Revalidate every minute
@@ -24,7 +24,7 @@ export default async function RoastPage(props: PageProps) {
   const { page } = getPaginationParams(searchParams, pageSize);
   const offset = getPaginationOffset(page, pageSize);
 
-  // Get total count and roasts in parallel
+  // Get total count, roasts, and leaderboard data in parallel
   const [total, roasts, leaderboardData] = await Promise.all([
     queryWithRetry(() => prisma.roast.count()),
     queryWithRetry(() => prisma.roast.findMany({
@@ -37,6 +37,7 @@ export default async function RoastPage(props: PageProps) {
         author: true,
         message: true,
         burns: true,
+        imageType: true, // Fetch imageType to detect image presence without fetching Bytes
         createdAt: true,
       },
     })),
@@ -52,15 +53,6 @@ export default async function RoastPage(props: PageProps) {
     }))
   ]);
 
-  // Get image existence in a separate query (still needs the IDs from the previous step)
-  const roastsWithImages = await queryWithRetry(() => prisma.roast.findMany({
-    where: {
-      id: { in: roasts.map(r => r.id) },
-      imageData: { not: null },
-    },
-    select: { id: true },
-  }));
-
   const rankedLeaderboardData = leaderboardData
     .map(entry => ({
       ...entry,
@@ -70,13 +62,11 @@ export default async function RoastPage(props: PageProps) {
     .slice(0, 5)
     .map(({ totalBurns, ...entry }) => entry);
 
-  const imageIds = new Set(roastsWithImages.map(r => r.id));
-
   const pagination = calculatePaginationMeta(page, pageSize, total);
 
   const roastsWithHasImage = roasts.map(roast => ({
     ...roast,
-    hasImage: imageIds.has(roast.id),
+    hasImage: !!roast.imageType,
   }));
 
   return (

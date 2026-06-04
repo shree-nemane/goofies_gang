@@ -5,17 +5,32 @@ import { MemberCard } from "../components/MemberCard";
 import { members } from "../data/members";
 import { prisma } from "@/lib/prisma";
 import { queryWithRetry } from "@/lib/db";
+import { Metadata } from "next";
+import { unstable_cache } from "next/cache";
+
+export const metadata: Metadata = {
+  title: "Home | GOOFIES GANG - The Chaos Collection",
+  description: "Welcome to the GOOFIES Gang's digital scrapbook. A chaotic collection of memories, roasts, and inside jokes. Explore our world of friendship and chaos.",
+};
+
+const getLeaderboardData = unstable_cache(
+  async () => {
+    return queryWithRetry(() => prisma.roast.groupBy({
+      by: ["target"],
+      _sum: {
+        burns: true,
+      },
+      _count: {
+        _all: true,
+      },
+    }));
+  },
+  ["leaderboard-top-1"],
+  { revalidate: 60, tags: ["roasts"] }
+);
 
 export default async function Home() {
-  const leaderboardData = await queryWithRetry(() => prisma.roast.groupBy({
-    by: ["target"],
-    _sum: {
-      burns: true,
-    },
-    _count: {
-      _all: true,
-    },
-  }));
+  const leaderboardData = await getLeaderboardData();
 
   const leaderboard = leaderboardData
     .map(entry => ({
@@ -92,6 +107,7 @@ export default async function Home() {
               <MemberCard 
                 member={member} 
                 rotation={index === 0 ? -2 : index === 1 ? 1 : -1} 
+                priority={true}
               />
             </div>
           ))}

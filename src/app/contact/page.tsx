@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact the Curator",
-  description: "Send a message to the curator of this chaotic collection. We might read it, we might roast it.",
+  title: "Contact the Curator | GOOFIES GANG",
+  description: "Send a message to the curator of this chaotic collection. Reach out to the GOOFIES Gang — we might read it, we might roast it.",
 };
 
 export default function ContactPage() {

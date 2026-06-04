@@ -3,8 +3,8 @@ import { MemberCard } from "../../components/MemberCard";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The Crew",
-  description: "Meet the GOOFIES: a digital archive of the people who make common sense look like a superpower. Profiles of the squad.",
+  title: "The Crew | GOOFIES GANG",
+  description: "Meet the GOOFIES: a digital archive of the people who make common sense look like a superpower. Profiles of the squad from the GOOFIES Gang.",
 };
 
 export default function MembersPage() {
@@ -33,7 +33,11 @@ export default function MembersPage() {
             
             return (
               <div key={member.id} className={`transform ${yOffset}`}>
-                <MemberCard member={member} rotation={rotation} />
+                <MemberCard 
+                  member={member} 
+                  rotation={rotation} 
+                  priority={index < 3} 
+                />
               </div>
             );
           })}

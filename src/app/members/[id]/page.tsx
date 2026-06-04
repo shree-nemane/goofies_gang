@@ -1,6 +1,40 @@
 import { members } from "../../../data/members";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const member = members.find((m) => m.id === id);
+
+  if (!member) {
+    return {
+      title: "Member Not Found",
+    };
+  }
+
+  return {
+    title: `${member.name} (${member.nickname || member.role})`,
+    description: `${member.vibeLine} - Meet ${member.name}, the ${member.role} of the GOOFIES Gang. ${member.shortDescription}`,
+    openGraph: {
+      title: `${member.name} | GOOFIES GANG Profiler`,
+      description: member.shortDescription,
+      images: [
+        {
+          url: member.image,
+          width: 800,
+          height: 1000,
+          alt: member.name,
+        },
+      ],
+    },
+  };
+}
 
 export default async function MemberDetail({ params }: { params: Promise<{ id: string }> }) {
    const { id } = await params;
@@ -38,11 +72,16 @@ export default async function MemberDetail({ params }: { params: Promise<{ id: s
                      Certified Goof
                   </div>
                   <div className="bg-white p-3 md:p-4 shadow-xl rotate-[1deg] relative transition-transform hover:rotate-0 flex flex-col items-center">
-                     <img
-                        src={member.image.includes('placeholder') ? 'https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&q=80' : member.image}
-                        alt={member.name}
-                        className="w-full aspect-[4/5] object-cover rounded-[1px]"
-                     />
+                     <div className="relative w-full aspect-[4/5] rounded-[1px] overflow-hidden">
+                        <Image
+                           src={member.image.includes('placeholder') ? 'https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&q=80' : member.image}
+                           alt={member.name}
+                           fill
+                           priority
+                           sizes="(max-width: 768px) 100vw, 45vw"
+                           className="object-cover"
+                        />
+                     </div>
                      <div className="w-full mt-4 flex items-center justify-start pb-2">
                         <h1 className="font-extrabold text-xl md:text-2xl text-[#322f22] tracking-tight relative inline-block leading-tight" style={{ fontFamily: "var(--font-jakarta)" }}>
                            {member.nickname ? `${member.nickname}: ` : ''}{member.name}
@@ -89,7 +128,15 @@ export default async function MemberDetail({ params }: { params: Promise<{ id: s
                      )}
                      
                      <div className="md:float-right w-full md:w-[220px] md:-mr-4 md:ml-6 my-4 bg-white p-3 shadow-md rotate-[3deg] hover:rotate-0 transition-transform">
-                        <img src={`/profile_snapshots/${member.id}/p1.jpeg`} alt="Evidence" className="w-full aspect-video md:aspect-[4/3] object-cover" />
+                        <div className="relative w-full aspect-video md:aspect-[4/3] overflow-hidden">
+                           <Image 
+                              src={`/profile_snapshots/${member.id}/p1.jpeg`} 
+                              alt="Evidence of chaos" 
+                              fill
+                              sizes="(max-width: 768px) 100vw, 220px"
+                              className="object-cover" 
+                           />
+                        </div>
                         <div className="text-[8px] uppercase text-center mt-2 font-bold tracking-widest text-[#322f22]">Exhibit A</div>
                      </div>
 
@@ -160,7 +207,15 @@ export default async function MemberDetail({ params }: { params: Promise<{ id: s
                         className="bg-white p-3 shadow-lg transition-all hover:scale-105 cursor-pointer"
                         style={{ rotate: num % 2 === 0 ? '2deg' : '-2deg' }}
                      >
-                        <img src={`/profile_snapshots/${member.id}/${num}.jpg`} alt={`Candid ${num}`} className="w-full aspect-[4/3] object-cover object-center" />
+                        <div className="relative w-full aspect-[4/3] overflow-hidden">
+                           <Image 
+                              src={`/profile_snapshots/${member.id}/${num}.jpg`} 
+                              alt={`Candid photo ${num} of ${member.name}`} 
+                              fill
+                              sizes="(max-width: 640px) 100vw, 50vw"
+                              className="object-cover object-center" 
+                           />
+                        </div>
                      </div>
                   ))}
                </div>

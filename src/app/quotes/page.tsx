@@ -7,8 +7,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The Quotebook",
-  description: "A chronological record of every weird, funny, and regrettable thing we've ever said out loud. Don't let your guard down.",
+  title: "The Quotebook | GOOFIES GANG",
+  description: "A chronological record of every weird, funny, and regrettable thing the GOOFIES Gang has ever said out loud. Don't let your guard down.",
 };
 
 export const revalidate = 60;

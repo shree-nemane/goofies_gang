@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export function HeroSection() {
   return (
@@ -15,11 +16,16 @@ export function HeroSection() {
         className="absolute top-10 left-4 md:left-6 lg:left-24 bg-white p-2 md:p-3 lg:p-4 shadow-ambient transform z-0 hidden sm:block md:opacity-20 lg:opacity-100"
         style={{ borderRadius: "0.25rem" }}
       >
-        <img 
-          className="w-24 h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 object-cover bg-gray-200 rounded-sm mb-2 md:mb-4" 
-          src='/home_page_pic/g1.jpg' 
-          alt="Memory 1" 
-        />
+        <div className="relative w-24 h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 rounded-sm mb-2 md:mb-4 overflow-hidden">
+          <Image 
+            fill
+            className="object-cover bg-gray-200" 
+            src='/home_page_pic/g1.jpg' 
+            alt="Typical Tuesday at Goofies Gang" 
+            priority
+            sizes="(max-width: 640px) 0vw, (max-width: 768px) 128px, 192px"
+          />
+        </div>
         <p style={{ fontFamily: "var(--font-caveat)" }} className="text-sm md:text-xl text-center">Typical Tuesday.</p>
       </motion.div>
 
@@ -30,11 +36,16 @@ export function HeroSection() {
         className="absolute bottom-10 right-4 md:right-16 lg:right-32 bg-white p-2 md:p-4 shadow-ambient transform z-0 hidden lg:block"
         style={{ borderRadius: "0.25rem" }}
       >
-        <img 
-          className="w-32 h-32 md:w-40 md:h-40 lg:w-56 lg:h-56 bg-gray-200 rounded-sm mb-2 md:mb-4 object-cover" 
-          src='/home_page_pic/g2.jpg' 
-          alt="Memory 2" 
-        />
+        <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-56 lg:h-56 rounded-sm mb-2 md:mb-4 overflow-hidden">
+          <Image 
+            fill
+            className="bg-gray-200 object-cover" 
+            src='/home_page_pic/g2.jpg' 
+            alt="Memorable mistake with the crew" 
+            priority
+            sizes="(max-width: 1024px) 0vw, 224px"
+          />
+        </div>
         <p style={{ fontFamily: "var(--font-caveat)" }} className="text-sm md:text-xl text-center text-[#b31446]">Mistakes were made.</p>
       </motion.div>
 

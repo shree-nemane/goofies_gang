@@ -3,13 +3,15 @@
 import { motion } from "framer-motion";
 import { type Member } from "../data/members";
 import Link from "next/link";
+import Image from "next/image";
 
 interface MemberCardProps {
   member: Member;
   rotation?: number;
+  priority?: boolean;
 }
 
-export function MemberCard({ member, rotation = 0 }: MemberCardProps) {
+export function MemberCard({ member, rotation = 0, priority = false }: MemberCardProps) {
   return (
     <Link href={`/members/${member.id}`} className="block relative z-10 w-full max-w-[280px] sm:max-w-[320px] mx-auto group">
       <motion.div
@@ -25,10 +27,13 @@ export function MemberCard({ member, rotation = 0 }: MemberCardProps) {
         <div className="absolute -top-3 left-1/2 w-16 md:w-20 h-5 md:h-6 bg-[rgba(255,255,255,0.7)] backdrop-blur-sm transform -translate-x-1/2 -rotate-2 rounded-sm" />
 
         <div className="relative w-full aspect-square bg-[#efe8d2] mb-4 overflow-hidden rounded-sm group-hover:shadow-inner transition-shadow">
-          <img 
+          <Image 
             src={member.pfpImage || member.image}
             alt={`Profile photo of ${member.name}, also known as ${member.nickname} - ${member.role}`}
-            className="w-full h-full object-cover filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+            fill
+            priority={priority}
+            sizes="(max-width: 640px) 280px, 320px"
+            className="object-cover filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
           />
           {/* subtle inside joke sticky note */}
           <div className="absolute bottom-2 right-2 bg-[#ff728d] text-white text-[10px] md:text-xs p-1 px-2 rotate-3 font-black shadow-sm transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Scribbles",
-  description: "Our very serious (not really) privacy policy. We promise not to sell your embarrassing stories... yet.",
+  title: "Privacy Scribbles | GOOFIES GANG",
+  description: "Our very serious (not really) privacy policy. We promise not to sell your embarrassing stories... yet. GOOFIES Gang data handling.",
 };
 
 export default function PrivacyPage() {

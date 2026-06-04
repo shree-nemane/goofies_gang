@@ -27,11 +27,11 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   title: {
-    default: "GOOFIES - The Chaos Collection",
-    template: "%s | GOOFIES",
+    default: "GOOFIES - The Ultimate Chaos Collection",
+    template: "%s | GOOFIES GANG",
   },
-  description: "A digital scrapbook of friendships — chaotic, funny, and emotional. Archiving the moments we'll probably regret in 10 years.",
-  keywords: ["friendship", "scrapbook", "inside jokes", "memories", "roasts", "evidence locker"],
+  description: "A digital scrapbook of friendships — chaotic, funny, and emotional. Archiving the moments we'll probably regret in 10 years. Welcome to the GOOFIES Gang.",
+  keywords: ["friendship", "scrapbook", "inside jokes", "memories", "roasts", "evidence locker", "GOOFIES gang", "chaotic friends", "digital memories"],
   authors: [{ name: "The GOOFIES Crew" }],
   creator: "The GOOFIES Crew",
   publisher: "GOOFIES Co.",
@@ -43,21 +43,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://goofies-gang.vercel.app",
-    siteName: "GOOFIES",
+    siteName: "GOOFIES GANG",
     title: "GOOFIES - The Chaos Collection",
-    description: "A digital scrapbook of friendships — chaotic, funny, and emotional.",
+    description: "A digital scrapbook of friendships — chaotic, funny, and emotional. Evidence locker of the best and worst moments.",
     images: [
       {
-        url: "/og-image.png", // Need to ensure this exists or use a generic one
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "GOOFIES - Digital Scrapbook",
+        alt: "GOOFIES Gang - Digital Scrapbook",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GOOFIES - The Chaos Collection",
+    title: "GOOFIES GANG - The Chaos Collection",
     description: "A digital scrapbook of friendships — chaotic, funny, and emotional.",
     images: ["/og-image.png"],
   },
@@ -93,18 +93,31 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "GOOFIES",
+              "@type": "Organization",
+              name: "GOOFIES GANG",
               url: "https://goofies-gang.vercel.app",
+              logo: "https://goofies-gang.vercel.app/icon.png",
               description: "A digital scrapbook of friendships — chaotic, funny, and emotional.",
-              publisher: {
-                "@type": "Organization",
-                name: "The GOOFIES Crew",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://goofies-gang.vercel.app/icon.png"
-                }
-              },
+              sameAs: [
+                "https://goofies-gang.vercel.app/members",
+                "https://goofies-gang.vercel.app/gallery"
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "Curator",
+                url: "https://goofies-gang.vercel.app/contact"
+              }
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "GOOFIES GANG",
+              url: "https://goofies-gang.vercel.app",
               potentialAction: {
                 "@type": "SearchAction",
                 target: "https://goofies-gang.vercel.app/gallery?q={search_term_string}",
